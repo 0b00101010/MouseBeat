@@ -33,9 +33,10 @@ public class PatternRead : MonoBehaviour
 
     public void CreateNode(int nowBeat)
     {
-        foreach (string str in fileStrs)
+        for (int i = 0; i < fileStrs.Count; i++)
         {
-                string[] spString = str.Split(line);
+            string str = fileStrs[0];
+            string[] spString = str.Split(line);
 
             if (int.Parse(spString[2]).Equals(nowBeat))
             {
@@ -68,7 +69,6 @@ public class PatternRead : MonoBehaviour
                 }
 
                 fileStrs.Remove(fileStrs[0]);
-                break;
             }
    
         }

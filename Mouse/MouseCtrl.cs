@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,21 +38,6 @@ public class MouseCtrl : MonoBehaviour
 
     private void Update()
     {
-
-        for (int i = 0; i < lines.Length; i++)
-        {
-            if (Mathf.Abs(Vector2.Distance(gameObject.transform.position, lines[i].transform.position)) < recentLineDistance)
-            {
-                recentLineDistance = Vector2.Distance(gameObject.transform.position, lines[i].transform.position);
-                recentLine = lines[i].GetComponent<Line>();
-            }
-
-        }
-
-        leftArea = recentLine.GetLeft();
-        rightArea = recentLine.GetRight();
-
-
         mousePos = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
 
         if(!(mousePos.x > 5.6f || mousePos.x < -5.6f || mousePos.y < -5 || mousePos.y > 5))
@@ -74,5 +60,16 @@ public class MouseCtrl : MonoBehaviour
             anim.SetTrigger("isTrigger");
             rightArea.Hit();
         }
+    }
+
+    private void LateUpdate()
+    {
+        var query = from i in lines
+                    orderby (gameObject.transform.position - i.transform.position).sqrMagnitude
+                    select i;
+
+        recentLine = query.First().GetComponent<Line>();
+        leftArea = recentLine.GetLeft();
+        rightArea = recentLine.GetRight();
     }
 }

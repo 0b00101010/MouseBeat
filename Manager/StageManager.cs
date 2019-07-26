@@ -34,7 +34,7 @@ public class StageManager : MonoBehaviour
     
     public Sprite[] backgorunds;
 
-    private void Start()
+    private void Awake()
     {
         if (instance == null)
             instance = this;
@@ -43,8 +43,13 @@ public class StageManager : MonoBehaviour
         GameManager.instance.soundManager.MusicQueue();
 
         patternRead = gameObject.GetComponent<PatternRead>();
-        patternRead.ReadFile("MapData/"+ GameManager.instance.nextMapName);
         beatUpSpeed = (60 / GameManager.instance.NextMapBpm / 4);
+        patternRead.ReadFile("MapData/" + GameManager.instance.nextMapName);
+
+    }
+
+    private void Start()
+    {
         StartCoroutine(BeatUp());
     }
 
