@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PatternRead : MonoBehaviour
 {
     private List<string> fileStrs = new List<string>();
@@ -18,6 +18,9 @@ public class PatternRead : MonoBehaviour
     private GameObject longNode;
 
     private LongNode curLongNode;
+
+    [SerializeField]
+    private Image background;
 
     public void ReadFile(string filePath)
     {
@@ -59,15 +62,22 @@ public class PatternRead : MonoBehaviour
 
                 }
 
+                if (spString[0].Equals("*"))
+                {
+                    StartCoroutine(ChangeBackground(int.Parse(spString[1])));
+                }
+
                 fileStrs.Remove(fileStrs[0]);
                 break;
             }
-            else
-            {
-                break;
-            }
-
+   
         }
+    }
+
+    private IEnumerator ChangeBackground(int num) {
+        yield return StartCoroutine(GameManager.instance.IFadeOut(background, 0.05f));
+        background.sprite = StageManager.instance.backgorunds[num];
+        StartCoroutine(GameManager.instance.IFadeIn(background, 0.01f));
     }
 
 }

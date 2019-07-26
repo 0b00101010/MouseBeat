@@ -14,6 +14,7 @@ public class SpawnArea : MonoBehaviour
             if (nodeList[0].transform.position.y < -4)
             {
                 StageManager.instance.HitEffect(2);
+                
                 Destroy(nodeList[0].gameObject,0.02f);
                 nodeList.Remove(nodeList[0]);
             }

@@ -31,6 +31,9 @@ public class StageManager : MonoBehaviour
     
     private PatternRead patternRead;
 
+    
+    public Sprite[] backgorunds;
+
     private void Start()
     {
         if (instance == null)
