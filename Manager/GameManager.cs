@@ -5,21 +5,31 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    
+    public static GameManager instance;
+    public SoundManager soundManager;
+
+    public int nextSongNumber;
     public float nextMapBpm;
     public float nextMapLastBeat;
-
-    public static GameManager instance;
-
     public string nextMapName;
 
-    public float NextMapBpm { get => nextMapBpm; set => nextMapBpm = value; }
     public float NextMapLastBeat { get => nextMapLastBeat; set => nextMapLastBeat = value; }
+    public AudioClip[] GameMusics;
+    public float NextMapBpm { get => nextMapBpm; set => nextMapBpm = value; }
 
     private void Awake()
     {
         if (instance == null)
             instance = this;
 
+        soundManager = gameObject.GetComponent<SoundManager>();
+        DontDestroyOnLoad(this.gameObject);
+  
+    }
+
+    private void Start()
+    {
         
     }
 

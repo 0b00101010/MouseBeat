@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class MouseCtrl : MonoBehaviour
 {
     [SerializeField]
-    private GameObject leftArea;
+    private SpawnArea leftArea;
 
     [SerializeField]
-    private GameObject rightArea;
+    private SpawnArea rightArea;
 
     [SerializeField]
     private RectTransform mouseCursor;
@@ -21,6 +21,12 @@ public class MouseCtrl : MonoBehaviour
     [SerializeField]
     private Animator anim;
 
+    [SerializeField]
+    private GameObject[] lines;
+
+    private float recentLineDistance = 100f;
+    private Line recentLine;
+
     private void Start()
     {
         Cursor.visible = false;
@@ -31,6 +37,21 @@ public class MouseCtrl : MonoBehaviour
 
     private void Update()
     {
+
+        for (int i = 0; i < lines.Length; i++)
+        {
+            if (Mathf.Abs(Vector2.Distance(gameObject.transform.position, lines[i].transform.position)) < recentLineDistance)
+            {
+                recentLineDistance = Vector2.Distance(gameObject.transform.position, lines[i].transform.position);
+                recentLine = lines[i].GetComponent<Line>();
+            }
+
+        }
+
+        leftArea = recentLine.GetLeft();
+        rightArea = recentLine.GetRight();
+
+
         mousePos = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
 
         if(!(mousePos.x > 5.6f || mousePos.x < -5.6f || mousePos.y < -5 || mousePos.y > 5))
@@ -41,14 +62,17 @@ public class MouseCtrl : MonoBehaviour
         if (!(mousePos.x > 5.6f || mousePos.x < -5.6f))
             rectTrasform.position = mousePos;
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            anim.SetTrigger("isTrigger"); 
-        }
-
-        if (Input.GetMouseButtonDown(1))
+       
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Z))
         {
             anim.SetTrigger("isTrigger");
+            leftArea.Hit();
+        }
+
+        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.X))
+        {
+            anim.SetTrigger("isTrigger");
+            rightArea.Hit();
         }
     }
 }

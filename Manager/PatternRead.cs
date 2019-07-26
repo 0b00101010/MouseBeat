@@ -17,6 +17,8 @@ public class PatternRead : MonoBehaviour
     [SerializeField]
     private GameObject longNode;
 
+    private LongNode curLongNode;
+
     public void ReadFile(string filePath)
     {
         file = Resources.Load(filePath) as TextAsset;
@@ -34,20 +36,26 @@ public class PatternRead : MonoBehaviour
 
             if (int.Parse(spString[2]).Equals(nowBeat))
             {
-                Debug.Log("Beat : " + nowBeat + ", PatternNumber : " + spString[2]);
+                // Debug.Log("Beat : " + nowBeat + ", PatternNumber : " + spString[2]);
 
                 if (spString[0].Equals("@"))
                 {
-                    Instantiate(normalNode, nodePos[int.Parse(spString[1])].transform.position, Quaternion.identity);
+                    GameObject newObject = Instantiate(normalNode, nodePos[int.Parse(spString[1])].transform.position, Quaternion.identity);
+                    nodePos[int.Parse(spString[1])].GetComponent<SpawnArea>().nodeList.Add(newObject.GetComponent<Node>());
+
                 }
 
                 if (spString[0].Equals("#"))
                 {
-
+                    curLongNode = Instantiate(longNode, nodePos[int.Parse(spString[1])].transform.position, Quaternion.identity).GetComponent<LongNode>();
+                    //nodePos[int.Parse(spString[1])].GetComponent<SpawnArea>().nodeList.Add(curLongNode.GetComponent<Node>());
+                    curLongNode.area = nodePos[int.Parse(spString[1])].GetComponent<SpawnArea>();
+                    curLongNode.LongNodeStart();
                 }
 
                 if (spString[0].Equals("$"))
                 {
+                    curLongNode.LongNodeEnd();
 
                 }
 
