@@ -11,10 +11,12 @@ public class SpawnArea : MonoBehaviour
         if (nodeList.Count > 0)
         {
            
-            if (nodeList[0].transform.position.y < -4)
+            if (nodeList[0].transform.position.y < -3.5f)
             {
-                StageManager.instance.HitEffect(2);
-                
+                //StageManager.instance.HitEffect(0);
+                //if (!nodeList[0].effect.Equals(null))
+                //    Instantiate(nodeList[0].effect, nodeList[0].transform.position, Quaternion.identity);
+                //StageManager.instance.Score += 100;
                 Destroy(nodeList[0].gameObject,0.02f);
                 nodeList.Remove(nodeList[0]);
             }

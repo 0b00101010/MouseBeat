@@ -8,7 +8,7 @@ public class Node : MonoBehaviour
     private float Coefficient;
 
     [SerializeField]
-    private GameObject effect;
+    public GameObject effect;
 
     protected Vector3 moveVector;
 
