@@ -11,10 +11,10 @@ public class GameManager : MonoBehaviour
 
     public int nextSongNumber;
     public float nextMapBpm;
-    public float nextMapLastBeat;
+    public int nextMapLastBeat;
     public string nextMapName;
 
-    public float NextMapLastBeat { get => nextMapLastBeat; set => nextMapLastBeat = value; }
+    public int NextMapLastBeat { get => nextMapLastBeat; set => nextMapLastBeat = value; }
     public AudioClip[] GameMusics;
     public float NextMapBpm { get => nextMapBpm; set => nextMapBpm = value; }
 

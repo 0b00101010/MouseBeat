@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class StageManager : MonoBehaviour
 {
     private int beat;
     private int score;
 
     private int combo;
+
+    private int lastBeat;
 
     [SerializeField]
     private ValueCtrl scoreViewCtrl;
@@ -31,6 +34,7 @@ public class StageManager : MonoBehaviour
     
     private PatternRead patternRead;
 
+    private SpriteRenderer blackSpriteRenderer;
     
     public Sprite[] backgorunds;
 
@@ -41,7 +45,9 @@ public class StageManager : MonoBehaviour
 
         GameManager.instance.soundManager.MusicChange(GameManager.instance.GameMusics[GameManager.instance.nextSongNumber]);
         GameManager.instance.soundManager.MusicQueue();
+        blackSpriteRenderer = GameObject.Find("Black").GetComponent<SpriteRenderer>();
 
+        lastBeat = GameManager.instance.NextMapLastBeat;
         patternRead = gameObject.GetComponent<PatternRead>();
         beatUpSpeed = (60 / GameManager.instance.NextMapBpm / 4);
         patternRead.ReadFile("MapData/" + GameManager.instance.nextMapName);
@@ -57,9 +63,18 @@ public class StageManager : MonoBehaviour
     private IEnumerator BeatUp()
     {
         beat++;
-        patternRead.CreateNode(beat);
-        yield return new WaitForSeconds(beatUpSpeed);
-        StartCoroutine(BeatUp());
+        if (beat.Equals(lastBeat))
+        {
+            StartCoroutine(GameEnd());
+        }
+        else
+        {
+            patternRead.CreateNode(beat);
+
+            yield return new WaitForSeconds(beatUpSpeed);
+
+            StartCoroutine(BeatUp());
+        }
     }
 
 
@@ -74,6 +89,13 @@ public class StageManager : MonoBehaviour
         yield return StartCoroutine(GameManager.instance.IFadeIn(hitEffect,0.02f));
         yield return StartCoroutine(GameManager.instance.IFadeOut(hitEffect,0.3f));
     }
+
+    private IEnumerator GameEnd() {
+        yield return StartCoroutine(GameManager.instance.FadeIn(blackSpriteRenderer,0.5f));
+        SceneManager.LoadScene("01.Main");
+    }
+
+    
 }
 
 

@@ -9,7 +9,7 @@ public class StageButton : MonoBehaviour
     [SerializeField]
     private float mapBpm;
     [SerializeField]
-    private float mapLastBeat;
+    private int mapLastBeat;
     [SerializeField]
     private string mapName;
 
