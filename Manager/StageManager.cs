@@ -71,7 +71,7 @@ public class StageManager : MonoBehaviour
         {
             patternRead.CreateNode(beat);
 
-            yield return new WaitForSeconds(beatUpSpeed);
+            yield return YieldInstructionCache.WaitingRealTime(beatUpSpeed);
 
             StartCoroutine(BeatUp());
         }
@@ -80,10 +80,10 @@ public class StageManager : MonoBehaviour
 
     public void HitEffect(int effectNum)
     {
-        StartCoroutine(effect(effectNum));
+        StartCoroutine(Effect(effectNum));
     }
 
-    private IEnumerator effect(int effectNum)
+    private IEnumerator Effect(int effectNum)
     {
         hitEffect.sprite = hitEffectSprites[effectNum];
         yield return StartCoroutine(GameManager.instance.IFadeIn(hitEffect,0.02f));
