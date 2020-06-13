@@ -12,13 +12,15 @@ public class InGameManager : MonoBehaviour
     public ScoreManager scoreManager;
     
     private BackgroundController backgroundController;
-    
+    private NodeGenerator nodeGenerator;
+
     private void Awake(){
         if(instance is null){
             instance = this;
         }
 
         backgroundController = gameObject.GetComponent<BackgroundController>();
+        nodeGenerator = gameObject.GetComponent<NodeGenerator>();
         scoreManager = gameObject.GetComponent<ScoreManager>();
     }
 
