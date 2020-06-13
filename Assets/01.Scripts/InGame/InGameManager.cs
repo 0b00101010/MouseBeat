@@ -12,7 +12,7 @@ public class InGameManager : MonoBehaviour
     
     private void Awake(){
         backgroundController = gameObject.GetComponent<BackgroundController>();
-        scoreManager - gameObject.GetComponent<ScoreManager>();
+        scoreManager = gameObject.GetComponent<ScoreManager>();
     }
 
     [Button("Change Background Color")]
