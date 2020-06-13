@@ -5,12 +5,19 @@ using NaughtyAttributes;
 
 public class InGameManager : MonoBehaviour
 {
+
+    public static InGameManager instance;
+
     [HideInInspector]
     public ScoreManager scoreManager;
     
     private BackgroundController backgroundController;
     
     private void Awake(){
+        if(instance is null){
+            instance = this;
+        }
+
         backgroundController = gameObject.GetComponent<BackgroundController>();
         scoreManager = gameObject.GetComponent<ScoreManager>();
     }
