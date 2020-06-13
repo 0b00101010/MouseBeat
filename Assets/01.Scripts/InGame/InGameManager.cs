@@ -7,7 +7,7 @@ public class InGameManager : MonoBehaviour
 {
 
     private BackgroundController backgroundController;
-
+    
     private void Awake(){
         backgroundController = gameObject.GetComponent<BackgroundController>();
     }
@@ -15,6 +15,14 @@ public class InGameManager : MonoBehaviour
     [Button("Change Background Color")]
     private void ChangeBackgroundColor() { 
         backgroundController.Execute();
+    }
+
+    public void Death(){
+
+    }
+
+    public void GameEnd(){
+
     }
 
 }
