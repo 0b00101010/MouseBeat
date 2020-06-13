@@ -25,7 +25,7 @@ public class Node : MonoBehaviour
     
     [SerializeField]
     private float _judgeGood;
-
+    
     private SpriteRenderer _spriteRenderer;
 
     protected int score => _score;
@@ -38,13 +38,14 @@ public class Node : MonoBehaviour
     protected float judgeGreat => _judgeGreat;
     protected float judgeGood => _judgeGood;
     
+    protected int positionIndex {get; set;}
     protected SpriteRenderer spriteRenderer => _spriteRenderer;
     
     private void Awake(){
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    public virtual void Execute(Vector2 startPosition, Vector2 endPosition){ }
+    public virtual void Execute(Vector2 startPosition, Vector2 endPosition, int index){ }
 
     public virtual void Interaction(){ }
     

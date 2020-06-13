@@ -38,15 +38,16 @@ public class NodeGenerator : MonoBehaviour
 
     public void NormalNodeGenerate(int index){
         Node node = GetAvaliableNode(normalNodes);
-        node.Execute(startPositions[index], endPositions[index]);
+        node.Execute(startPositions[index], endPositions[index], index);
     }
 
     [Button("Normal Node Generate")]
     public void NormalNodeGenerate(){
-        int index = Random.Range(0, startPositions.Count);
+        // int index = Random.Range(0, startPositions.Count);
+        int index = 0;
         
         Node node = GetAvaliableNode(normalNodes);
-        node.Execute(startPositions[index], endPositions[index]);
+        node.Execute(startPositions[index], endPositions[index], index);
     }
 
     private Node GetAvaliableNode(List<Node> nodes){

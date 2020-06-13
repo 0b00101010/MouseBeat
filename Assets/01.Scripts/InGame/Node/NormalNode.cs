@@ -8,10 +8,13 @@ public class NormalNode : Node
 {
     private Tween moveTween;
 
-    public override void Execute(Vector2 startPosition, Vector2 endPosition){
+    public override void Execute(Vector2 startPosition, Vector2 endPosition, int index){
         gameObject.SetActive(true);
         gameObject.transform.position = startPosition;
+        
+        positionIndex = index;
 
+        InGameManager.instance.nodeInteractionController.AddActiveNormalNode(this, positionIndex);
         moveTween = gameObject.transform.DOMove(endPosition, defaultSpeed).SetEase(easeType);
     }
 
@@ -35,8 +38,9 @@ public class NormalNode : Node
             break;
         }
 
-        ObjectReset();
+        InGameManager.instance.nodeInteractionController.RemoveActiveNormalNode(this, positionIndex);
         InGameManager.instance.scoreManager.GetScore(judgeLevel, score);
+        ObjectReset();
     }   
 
     public override void FailedInteraction(){

@@ -11,6 +11,9 @@ public class InGameManager : MonoBehaviour
     [HideInInspector]
     public ScoreManager scoreManager;
     
+    [HideInInspector]
+    public NodeInteractionController nodeInteractionController;
+
     private BackgroundController backgroundController;
     private NodeGenerator nodeGenerator;
 
@@ -20,6 +23,7 @@ public class InGameManager : MonoBehaviour
         }
 
         backgroundController = gameObject.GetComponent<BackgroundController>();
+        nodeInteractionController = gameObject.GetComponent<NodeInteractionController>();
         nodeGenerator = gameObject.GetComponent<NodeGenerator>();
         scoreManager = gameObject.GetComponent<ScoreManager>();
     }
