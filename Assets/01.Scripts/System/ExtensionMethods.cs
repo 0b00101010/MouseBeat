@@ -14,7 +14,7 @@ public static class ExtensionMethods{
         behaivour.StopCoroutine(coroutine);
     }
 
-    public static void Log(string value){
+    public static void Log(this string value){
         Debug.Log(value);
     }
 }
