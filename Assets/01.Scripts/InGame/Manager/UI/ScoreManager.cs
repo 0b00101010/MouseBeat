@@ -114,12 +114,22 @@ public class ScoreManager : MonoBehaviour
         judgeTween?.Kill();
 
         judgeImage.transform.localScale = Vector3.one;
+        judgeImage.color = Color.white;
+        
         judgeImage.gameObject.SetActive(true);
 
         judgeTween = judgeImage.transform.DOScale(sizeUpValue, duration).SetEase(easeType);
         yield return judgeTween.WaitForCompletion();
 
+        judgeTween.Kill();
+
+        judgeTween = judgeImage.DOFade(0, 1.25f);
+        yield return judgeTween.WaitForCompletion();
+
         judgeImage.gameObject.SetActive(false);
+
     }
+
+    
 
 }
