@@ -18,7 +18,7 @@ public class NormalNode : Node
     public override void Interaction(){ 
         int judgeLevel = 0;
         switch(judgeLevel){
-            case var k when (judgePerfect - moveTween.position) < 0.03f:
+            case var k when judgePerfect == moveTween.position:
             judgeLevel = 4;
             break;
 
