@@ -29,11 +29,4 @@ public class NodeInteractionController : MonoBehaviour
             e.ToString().Log();
         }
     }
-
-    public void Update(){
-        if(Input.GetKeyDown(KeyCode.A)){
-            Interaction(0);
-        }
-    }
-
 }
