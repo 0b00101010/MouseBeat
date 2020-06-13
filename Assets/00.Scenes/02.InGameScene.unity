@@ -4406,6 +4406,7 @@ GameObject:
   - component: {fileID: 1728424719}
   - component: {fileID: 1728424718}
   - component: {fileID: 1728424722}
+  - component: {fileID: 1728424723}
   - component: {fileID: 1728424721}
   m_Layer: 0
   m_Name: InGameManager
@@ -4439,6 +4440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14bdcbe85ac242f08c3254f0f43b344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreManager: {fileID: 0}
 --- !u!4 &1728424720
 Transform:
   m_ObjectHideFlags: 0
@@ -4606,6 +4608,44 @@ MonoBehaviour:
   - {fileID: 1659143870}
   - {fileID: 647465372}
   - {fileID: 1571190057}
+--- !u!114 &1728424723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728424717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe980a8c3ba2f482e872d9204ea9a252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHP: 100
+  hpImage: {fileID: 1860301938}
+  scoreText: {fileID: 140661416}
+  comboText: {fileID: 1936602501}
+  judgeImage: {fileID: 570373177}
+  judgeSprites:
+  - {fileID: 21300000, guid: fa44c65bb3960461f90312bb21d34351, type: 3}
+  - {fileID: 21300000, guid: 11dbe633e2d9242e7afb5231a889499d, type: 3}
+  - {fileID: 21300000, guid: e3d246e81353d4e3dbbb3201974783f5, type: 3}
+  - {fileID: 21300000, guid: 460baed35f7974e99a7bc82327100bd4, type: 3}
+  - {fileID: 21300000, guid: b182924d890f14965ade292309b07993, type: 3}
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1728424719}
+        m_TargetAssemblyTypeName: InGameManager, Assembly-CSharp
+        m_MethodName: Death
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1760896097
 GameObject:
   m_ObjectHideFlags: 0
@@ -4981,7 +5021,7 @@ GameObject:
   - component: {fileID: 1936602502}
   - component: {fileID: 1936602501}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ComboText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

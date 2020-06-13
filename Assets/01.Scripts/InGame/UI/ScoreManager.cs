@@ -33,6 +33,11 @@ public class ScoreManager : MonoBehaviour
     [SerializeField]
     private Image judgeImage;
 
+    [Header("Resources")]
+    [SerializeField]
+    private Sprite[] judgeSprites;
+    
+
     [Header("Events")]
     [SerializeField]
     private VoidEvent deathEvent;
@@ -55,5 +60,34 @@ public class ScoreManager : MonoBehaviour
     public void GetScore(int judge, int score){
         this.score += score;
         scoreText.text = this.score.ToString();
+
+        switch(judge){
+            case 4:
+            judgeImage.sprite = judgeSprites[4];
+            comboCount++;
+            break;
+            
+            case 3:
+            judgeImage.sprite = judgeSprites[3];
+            comboCount++;
+            break;
+            
+            case 2:
+            judgeImage.sprite = judgeSprites[2];
+            comboCount++;
+            break;
+            
+            case 1:
+            judgeImage.sprite = judgeSprites[1];
+            comboCount++;
+            break;
+            
+            case 0:
+            judgeImage.sprite = judgeSprites[0];
+            comboCount = 0;
+            break;
+
+
+        }
     }
 }
