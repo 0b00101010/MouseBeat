@@ -5,11 +5,14 @@ using NaughtyAttributes;
 
 public class InGameManager : MonoBehaviour
 {
-
+    [HideInInspector]
+    public ScoreManager scoreManager;
+    
     private BackgroundController backgroundController;
     
     private void Awake(){
         backgroundController = gameObject.GetComponent<BackgroundController>();
+        scoreManager - gameObject.GetComponent<ScoreManager>();
     }
 
     [Button("Change Background Color")]
