@@ -25,8 +25,9 @@ public class NodeInteractionController : MonoBehaviour
     public void Interaction(int position){
         try{
             activeNormalNodes[position][0]?.Interaction();
-        }catch(Exception e){
-            e.ToString().Log();
+        }catch{
+            // FIXME : Empty catch
+            return ;
         }
     }
 }
