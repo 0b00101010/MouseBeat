@@ -86,8 +86,12 @@ public class ScoreManager : MonoBehaviour
             judgeImage.sprite = judgeSprites[0];
             comboCount = 0;
             break;
-
-
         }
+
+        if(comboCount < 100){
+            comboText.text = comboCount.ToStringValue();
+        }else{
+            comboText.text = comboCount.ToString();
+        } 
     }
 }
