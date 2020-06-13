@@ -12,7 +12,7 @@ public class NormalNode : Node
         gameObject.SetActive(true);
         gameObject.transform.position = startPosition;
 
-        moveTween = gameObject.transform.DOMove(endPosition, defaultSpeed);
+        moveTween = gameObject.transform.DOMove(endPosition, defaultSpeed).SetEase(easeType);
     }
 
     public override void Interaction(){ 

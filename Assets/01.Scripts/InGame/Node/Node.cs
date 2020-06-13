@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class Node : MonoBehaviour
 {
     [Header("Values")]
@@ -13,6 +13,9 @@ public class Node : MonoBehaviour
 
     [SerializeField]
     private float _defaultSpeed;
+
+    [SerializeField]
+    private Ease _easeType;
 
     [SerializeField]
     private float _judgePerfect;
@@ -29,6 +32,8 @@ public class Node : MonoBehaviour
     protected int reducedHp => _reducedHp;
     protected float defaultSpeed => _defaultSpeed;    
     
+    protected Ease easeType => _easeType;
+
     protected float judgePerfect => _judgePerfect;
     protected float judgeGreat => _judgeGreat;
     protected float judgeGood => _judgeGood;
