@@ -147,6 +147,7 @@ MonoBehaviour:
   _score: 10
   _reducedHp: 10
   _defaultSpeed: 1.5
-  _judgePerfect: 0.95
+  _easeType: 0
+  _judgePerfect: 0.99
   _judgeGreat: 0.9
   _judgeGood: 0.8
