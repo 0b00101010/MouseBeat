@@ -1,10 +1,10 @@
 ﻿using System;
-using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
+using DG.Tweening;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -35,12 +35,24 @@ public class ScoreManager : MonoBehaviour
 
     [Header("Resources")]
     [SerializeField]
-    private Sprite[] judgeSprites;
+    private Sprite[] judgeSprites;    
+
+    [Header("Judge Effect")]
+    [SerializeField]
+    private float sizeUpValue;
     
+    [SerializeField]
+    private float duration;
+    
+    [SerializeField]
+    private Ease easeType;
 
     [Header("Events")]
     [SerializeField]
     private VoidEvent deathEvent;
+
+    private Tween judgeTween;
+    private IEnumerator judgeCoroutine;
 
     private void Awake(){
         hp = defaultHP;
@@ -93,5 +105,21 @@ public class ScoreManager : MonoBehaviour
         }else{
             comboText.text = comboCount.ToString();
         } 
+
+        judgeCoroutine?.Stop(this);
+        judgeCoroutine = JudgeEvent().Start(this);
     }
+
+    private IEnumerator JudgeEvent(){
+        judgeTween?.Kill();
+
+        judgeImage.transform.localScale = Vector3.one;
+        judgeImage.gameObject.SetActive(true);
+
+        judgeTween = judgeImage.transform.DOScale(sizeUpValue, duration).SetEase(easeType);
+        yield return judgeTween.WaitForCompletion();
+
+        judgeImage.gameObject.SetActive(false);
+    }
+
 }

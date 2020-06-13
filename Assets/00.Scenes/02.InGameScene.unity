@@ -2580,7 +2580,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &570373176
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7807,9 +7807,9 @@ GameObject:
   - component: {fileID: 1728424719}
   - component: {fileID: 1728424718}
   - component: {fileID: 1728424722}
-  - component: {fileID: 1728424723}
   - component: {fileID: 1728424724}
   - component: {fileID: 1728424725}
+  - component: {fileID: 1728424723}
   - component: {fileID: 1728424721}
   m_Layer: 0
   m_Name: InGameManager
@@ -8035,6 +8035,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e3d246e81353d4e3dbbb3201974783f5, type: 3}
   - {fileID: 21300000, guid: 460baed35f7974e99a7bc82327100bd4, type: 3}
   - {fileID: 21300000, guid: b182924d890f14965ade292309b07993, type: 3}
+  sizeUpValue: 1.5
+  duration: 1.125
+  easeType: 20
   deathEvent:
     m_PersistentCalls:
       m_Calls:
@@ -8593,7 +8596,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 000000000
+  m_Text: 
 --- !u!222 &1936602502
 CanvasRenderer:
   m_ObjectHideFlags: 0
