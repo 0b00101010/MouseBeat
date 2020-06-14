@@ -26,6 +26,8 @@ public class LongNode : Node
     public override void Execute(Vector2 startPosition, Vector2 endPosition, int index){
         gameObject.SetActive(true);
 
+        InGameManager.instance.nodeInteractionController.AddActiveLongNode(this, index);
+
         positionIndex = index;
         gameObject.transform.position = startPosition;
 
@@ -94,6 +96,8 @@ public class LongNode : Node
 
         tailTween?.Kill();
         tailTween = null;
+
+        InGameManager.instance.nodeInteractionController.RemoveActiveLongNode(this, positionIndex);
 
         base.ObjectReset();
     }

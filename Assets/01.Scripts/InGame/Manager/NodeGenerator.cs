@@ -26,6 +26,9 @@ public class NodeGenerator : MonoBehaviour
     private List<Vector2> startPositions = new List<Vector2>();
     private List<Vector2> endPositions = new List<Vector2>();
 
+    [Header("Events")]
+    [SerializeField]
+    private IntEvent longNodeStopEvent;
 
     private void Awake(){
         Node[] tempNodes = normalNodeObject.GetComponentsInChildren<NormalNode>(true);
@@ -67,8 +70,18 @@ public class NodeGenerator : MonoBehaviour
 
         Node node = GetAvaliableNode(longNodes);
         node.Execute(startPositions[index], endPositions[index], index);
+
+        IEnumerator coroutine() {
+            yield return YieldInstructionCache.WaitSeconds(0.25f);
+            LongNodeStop(index);
+        }
+
+        coroutine().Start(this);
     }
 
+    public void LongNodeStop(int index){
+        longNodeStopEvent.Invoke(index);
+    }
 
     private Node GetAvaliableNode(List<Node> nodes){
         for(int i = 0; i < nodes.Count; i++){
