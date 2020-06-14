@@ -8,9 +8,13 @@ public class NodeGenerator : MonoBehaviour
 
     [Header("Node Objects")]
     [SerializeField]
-    private GameObject normalNodeObjects;
+    private GameObject normalNodeObject;
+
+    [SerializeField]
+    private GameObject longNodeObject;
 
     private List<Node> normalNodes = new List<Node>();
+    private List<Node> longNodes = new List<Node>();
 
     [Header("Transforms")]
     [SerializeField]
@@ -24,8 +28,11 @@ public class NodeGenerator : MonoBehaviour
 
 
     private void Awake(){
-        Node[] tempNodes = normalNodeObjects.GetComponentsInChildren<NormalNode>(true);
+        Node[] tempNodes = normalNodeObject.GetComponentsInChildren<NormalNode>(true);
         normalNodes = tempNodes.ToList();
+
+        tempNodes = longNodeObject.GetComponentsInChildren<LongNode>(true);
+        longNodes = tempNodes.ToList();
 
         for(int i = 0; i < startTransforms.Length; i++){
             startPositions.Add(startTransforms[i].position);
@@ -48,6 +55,20 @@ public class NodeGenerator : MonoBehaviour
         Node node = GetAvaliableNode(normalNodes);
         node.Execute(startPositions[index], endPositions[index], index);
     }
+
+    public void LongNodeGenerate(int index){
+        Node node = GetAvaliableNode(longNodes);
+        node.Execute(startPositions[index], endPositions[index], index);
+    }
+
+    [Button("Long Node Generate")]
+    public void LongNodeGenerate(){
+        int index = Random.Range(0, startPositions.Count);
+
+        Node node = GetAvaliableNode(longNodes);
+        node.Execute(startPositions[index], endPositions[index], index);
+    }
+
 
     private Node GetAvaliableNode(List<Node> nodes){
         for(int i = 0; i < nodes.Count; i++){
