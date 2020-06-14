@@ -41,7 +41,7 @@ public class Node : MonoBehaviour
     protected int positionIndex {get; set;}
     protected SpriteRenderer spriteRenderer => _spriteRenderer;
     
-    private void Awake(){
+    protected void Awake(){
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
