@@ -33,6 +33,9 @@ public class ScoreManager : MonoBehaviour
     [SerializeField]
     private Image judgeImage;
 
+    [SerializeField]
+    private NodeEffect[] nodeEffects;
+
     [Header("Resources")]
     [SerializeField]
     private Sprite[] judgeSprites;    
@@ -128,6 +131,10 @@ public class ScoreManager : MonoBehaviour
 
         judgeImage.gameObject.SetActive(false);
 
+    }
+
+    public void NodeEffect(int position){
+        nodeEffects[position].Execute();
     }
 
     
