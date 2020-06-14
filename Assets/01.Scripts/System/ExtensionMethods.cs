@@ -17,6 +17,10 @@ public static class ExtensionMethods{
         Debug.Log(value);
     }
 
+    public static float Distance(this Vector2 positionA, Vector2 positionB){
+        return Vector2.Distance(positionA, positionB);
+    }
+
     public static string ToStringValue(this int value){
         switch(value){
             case var a when value < 10:
