@@ -61,7 +61,7 @@ public class LongNode : Node
         headTween = DOTween.To(() => headVector, value => headVector = value, endPosition, defaultSpeed);
         
         while(true){
-            if(headVector.Equals(endPosition)){
+            if(headVector.Distance(endPosition) < 0.05f){
                 break;
             }
 
@@ -74,7 +74,8 @@ public class LongNode : Node
         tailTween = DOTween.To(() => tailVector, value => tailVector = value, endPosition, defaultSpeed);
         
         while(true){
-            if(tailVector.Equals(endPosition)){
+            if(tailVector.Distance(endPosition) < 0.05f){
+                gameObject.transform.name.Log();
                 break;
             }
             
