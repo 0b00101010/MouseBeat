@@ -22,7 +22,8 @@ public class NodeInteractionController : MonoBehaviour
         activeNormalNodes[position].Remove(node);
     }
 
-    public void Interaction(int position){
+
+    public void NoramlNodeInteraction(int position){
         try{
             activeNormalNodes[position][0]?.Interaction();
         }catch{
