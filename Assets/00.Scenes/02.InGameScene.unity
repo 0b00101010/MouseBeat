@@ -543,6 +543,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1 &117817619
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,6 +992,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1001 &196251869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1080,6 +1084,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1001 &202472164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1929,6 +1935,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1 &412489361
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,6 +2102,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1001 &465383432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2184,6 +2194,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1001 &467054086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2274,6 +2286,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1 &473812057
 GameObject:
   m_ObjectHideFlags: 0
@@ -2818,6 +2832,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1001 &531813820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2908,6 +2924,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1 &562597817
 GameObject:
   m_ObjectHideFlags: 0
@@ -3178,6 +3196,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1001 &588094068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3268,6 +3288,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1001 &640912346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3805,6 +3827,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1 &722462777
 GameObject:
   m_ObjectHideFlags: 0
@@ -3932,6 +3956,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1 &730399214
 GameObject:
   m_ObjectHideFlags: 0
@@ -4335,6 +4361,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1 &781078484
 GameObject:
   m_ObjectHideFlags: 0
@@ -4729,6 +4757,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1 &825428101
 GameObject:
   m_ObjectHideFlags: 0
@@ -4931,6 +4961,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1001 &852431800
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5087,6 +5119,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1001 &878603804
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6105,6 +6139,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1 &1104532683
 GameObject:
   m_ObjectHideFlags: 0
@@ -6270,6 +6306,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1 &1133177617
 GameObject:
   m_ObjectHideFlags: 0
@@ -6790,6 +6828,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1001 &1219987725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6946,6 +6986,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1001 &1228279882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7211,6 +7253,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1001 &1269221988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7301,6 +7345,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1001 &1284903697
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8458,6 +8504,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1 &1432543910
 GameObject:
   m_ObjectHideFlags: 0
@@ -9026,6 +9074,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1 &1503224253
 GameObject:
   m_ObjectHideFlags: 0
@@ -9228,6 +9278,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1001 &1529514630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9534,6 +9586,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1001 &1631490804
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11212,6 +11266,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1001 &1962750316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11997,6 +12053,8 @@ MonoBehaviour:
   _judgePerfect: 0.95
   _judgeGreat: 0.9
   _judgeGood: 0.8
+  fadeDuration: 0
+  fallDownDuration: 0
 --- !u!1001 &2123238034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12158,7 +12216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2019094197371793113, guid: 55660d369ec0f4d64ae3a047e9eb19e4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.79
       objectReference: {fileID: 0}
     - target: {fileID: 2019094197371793113, guid: 55660d369ec0f4d64ae3a047e9eb19e4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12199,6 +12257,10 @@ PrefabInstance:
     - target: {fileID: 2019094197371793117, guid: 55660d369ec0f4d64ae3a047e9eb19e4, type: 3}
       propertyPath: m_Name
       value: NormalNode
+      objectReference: {fileID: 0}
+    - target: {fileID: 2019094197371793117, guid: 55660d369ec0f4d64ae3a047e9eb19e4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55660d369ec0f4d64ae3a047e9eb19e4, type: 3}

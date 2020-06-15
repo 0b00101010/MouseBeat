@@ -43,6 +43,10 @@ Judge Good : Good 판정 값
 노트의 진행도가 Good보다 낮을 경우 Bad 처리
 
 노트를 아예 처리 하지 않을 경우에는 Miss로 처리
+
+-- Failed Inturaction Effect --
+Fade Duration : Fade out이 진행 될 시간
+Fall Down Duration : 떨어지는 시간 
 ```
 
 Long Node 
