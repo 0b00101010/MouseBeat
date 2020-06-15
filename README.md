@@ -2,14 +2,14 @@
 
 ## Developer
 Develop : 전세훈([@Komorio](https://github.com/Komorio)) <br>
-Design : 정용우
+Design : 정용우([@Reuse1020](https://github.com/Reuse1020)) <br>
 
 ## Editor
 UnityVersion : 2020.1.0b12
 
-## Designer Values
+# Designer Values
 
--- Node --
+## Node 
 
 Normal Node
 
@@ -81,7 +81,9 @@ Judge Good : Good 판정 값
 노트를 아예 처리 하지 않을 경우에는 Miss로 처리
 ```
 
+---
 
+## Effect
 
 * Judge Effect / 판정시 화면 중앙에 출력되는 판정 이미지
 > InGameManager 오브젝트의 ScoreManager 스크립트에 있는 Judge Effect 탭에서 수정 가능 
@@ -93,4 +95,12 @@ Duration : 크기 변경에 소요 될 시간
 ex) Duration 값이 1.5 일 경우 1.5초에 걸쳐 커짐
 
 Ease Type : 크기 변경에 방식을 설정
+```
+
+* Node Effect / Perfect로 상호작용 할 경우 실행 될 이펙트
+>03.Prefabs/Effect/Effect 아래 NodeEffect 스크립트의 Values 탭에서 수정 가능
+```
+Left Turn Angle : 왼쪽으로 회전하는 오브젝트 회전 값
+Right Turn Angle : 오른쪽으로 회전하는 오브젝트 회전 값
+Size Up Value : 증가할 크기
 ```

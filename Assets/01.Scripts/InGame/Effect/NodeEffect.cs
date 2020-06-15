@@ -23,15 +23,25 @@ public class NodeEffect : MonoBehaviour
 
     private Vector3 sizeUpScale;
 
+    [Header("Values")]
+    [SerializeField]
+    private float leftTurnAngle = 430;
+
+    [SerializeField]
+    private float rightTurnAngle = 390;
+
+    [SerializeField]
+    private float sizeUpValue = 1.2f;
+
     private bool isTweening;
 
     private void Awake(){
         isTweening = false;
 
-        leftRotateVector = Vector3.back * 430;
-        rightRotateVector = Vector3.forward * 390;
+        leftRotateVector = Vector3.back * leftTurnAngle;
+        rightRotateVector = Vector3.forward * rightTurnAngle;
 
-        sizeUpScale = Vector3.one * 1.2f;
+        sizeUpScale = Vector3.one * sizeUpValue;
 
         defaultColor = Color.white;
         defaultColor.a = 0;
