@@ -10,8 +10,8 @@ public class NormalNode : Node
     private Tween fadeTween = null;
     private Tween fallDownTween = null;
 
-
-    private bool isInteraction;
+    private Vector2 startPosition;
+    private Vector2 endPosition;
 
     [SerializeField]
     private float fadeDuration;
@@ -23,24 +23,24 @@ public class NormalNode : Node
     private Ease fallDownEaes;
 
     public override void Execute(Vector2 startPosition, Vector2 endPosition, int index){
-        gameObject.SetActive(true);
         gameObject.transform.position = startPosition;
         
-        isInteraction = false;
-
         positionIndex = index;
+        
+        this.startPosition = startPosition;
+        this.endPosition = endPosition;
+
+        gameObject.SetActive(true);
         
         InGameManager.instance.nodeInteractionController.AddActiveNormalNode(this, positionIndex);
         moveTween = gameObject.transform.DOMove(endPosition, defaultSpeed).SetEase(easeType);
+        
     }
 
     public override void Interaction(){ 
-
         int judgeLevel = 0;
         float position = startPosition.Distance(gameObject.transform.position)/startPosition.Distance(endPosition);
     
-        isInteraction = true;
-
         switch(judgeLevel){
             case var k when (judgePerfect - position) < 0.1f:
             judgeLevel = 4;
@@ -56,23 +56,24 @@ public class NormalNode : Node
             
             case var k when position < judgeGood:
             judgeLevel = 1;
-            FailedInteractionEffect().Start(this);
 
             InGameManager.instance.nodeInteractionController.RemoveActiveNormalNode(this, positionIndex);
             InGameManager.instance.scoreManager.GetScore(judgeLevel, score);
+            
+            FailedInteractionEffect().Start(this);
+            
             return;
         }
 
-        InGameManager.instance.scoreManager.NodeEffect(positionIndex);
-        
         InGameManager.instance.nodeInteractionController.RemoveActiveNormalNode(this, positionIndex);
         InGameManager.instance.scoreManager.GetScore(judgeLevel, score);
+        
+        InGameManager.instance.scoreManager.NodeEffect(positionIndex);
+
         ObjectReset();
     }   
 
-    public override void FailedInteraction(){
-        isInteraction = true;
-       
+    public override void FailedInteraction(){       
         InGameManager.instance.nodeInteractionController.RemoveActiveNormalNode(this, positionIndex);
         InGameManager.instance.scoreManager.GetScore(0, 0);
        
@@ -93,14 +94,15 @@ public class NormalNode : Node
         fadeTween?.Kill();
         fallDownTween?.Kill();
 
-        isInteraction = false;
-
         spriteRenderer.color = Color.white;
+
+        gameObject.transform.position = Vector2.zero;
+
         base.ObjectReset();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.CompareTag("JudgeLine") && !isInteraction){
+        if(other.CompareTag("JudgeLine")){
             FailedInteraction();
         }    
     }

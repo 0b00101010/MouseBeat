@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2019094197371793113}
   - component: {fileID: 2019094197371793112}
   - component: {fileID: 2019094197371793119}
-  - component: {fileID: 2019094197371793118}
   - component: {fileID: 1921466170}
   m_Layer: 0
   m_Name: NormalNode
@@ -111,27 +110,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5444443, y: 0.21666667}
   m_EdgeRadius: 0
---- !u!50 &2019094197371793118
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2019094197371793117}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &1921466170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +126,7 @@ MonoBehaviour:
   _reducedHp: 10
   _defaultSpeed: 1.5
   _easeType: 1
-  _judgePerfect: 0.99
+  _judgePerfect: 0.98
   _judgeGreat: 0.9
   _judgeGood: 0.8
   fadeDuration: 1
