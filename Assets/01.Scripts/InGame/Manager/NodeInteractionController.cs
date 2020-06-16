@@ -5,21 +5,21 @@ using UnityEngine;
 
 public class NodeInteractionController : MonoBehaviour
 {
-    private List<List<Node>> activeNormalNodes = new List<List<Node>>();
+    private List<List<NormalNode>> activeNormalNodes = new List<List<NormalNode>>();
     private List<List<LongNode>> activeLongNodes = new List<List<LongNode>>();
     
     private void Awake(){
         for(int i = 0; i < 8; i++){
-            activeNormalNodes.Add(new List<Node>());
+            activeNormalNodes.Add(new List<NormalNode>());
             activeLongNodes.Add(new List<LongNode>());
         }
     }
 
-    public void AddActiveNormalNode(Node node, int position){
+    public void AddActiveNormalNode(NormalNode node, int position){
         activeNormalNodes[position].Add(node);
     }
 
-    public void RemoveActiveNormalNode(Node node, int position){
+    public void RemoveActiveNormalNode(NormalNode node, int position){
         activeNormalNodes[position].Remove(node);
     }
 
