@@ -10,7 +10,6 @@ public class NormalNode : Node
     private Tween fadeTween = null;
     private Tween fallDownTween = null;
 
-    private IEnumerator failedCoroutine;
 
     private bool isInteraction;
 
@@ -36,15 +35,14 @@ public class NormalNode : Node
     }
 
     public override void Interaction(){ 
-        int judgeLevel = 0;
-        float position = moveTween.position;
 
-        moveTween.Duration().ToString().Log();
-        
+        int judgeLevel = 0;
+        float position = startPosition.Distance(gameObject.transform.position)/startPosition.Distance(endPosition);
+    
         isInteraction = true;
 
         switch(judgeLevel){
-            case var k when Mathf.Abs(judgePerfect - position) < 0.01f:
+            case var k when (judgePerfect - position) < 0.1f:
             judgeLevel = 4;
             break;
 
@@ -58,7 +56,7 @@ public class NormalNode : Node
             
             case var k when position < judgeGood:
             judgeLevel = 1;
-            failedCoroutine = FailedInteractionEffect().Start(this);
+            FailedInteractionEffect().Start(this);
 
             InGameManager.instance.nodeInteractionController.RemoveActiveNormalNode(this, positionIndex);
             InGameManager.instance.scoreManager.GetScore(judgeLevel, score);
@@ -78,7 +76,7 @@ public class NormalNode : Node
         InGameManager.instance.nodeInteractionController.RemoveActiveNormalNode(this, positionIndex);
         InGameManager.instance.scoreManager.GetScore(0, 0);
        
-        failedCoroutine = FailedInteractionEffect().Start(this);
+        FailedInteractionEffect().Start(this);
     }   
 
     private IEnumerator FailedInteractionEffect(){
