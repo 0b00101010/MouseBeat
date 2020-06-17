@@ -46,18 +46,6 @@ public class NodeGenerator : MonoBehaviour
         }
     }
 
-    private void Start(){
-        Coroutine().Start(this);
-    }
-
-    public IEnumerator Coroutine(){
-        while(true){
-            // NormalNodeGenerate();
-            LongNodeGenerate();
-            yield return YieldInstructionCache.WaitSeconds(2.0f);
-        }
-    }
-
     public void NormalNodeGenerate(int index){
         Node node = GetAvaliableNode(normalNodes);
         node.Execute(startPositions[index], endPositions[index], index);
