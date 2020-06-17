@@ -628,7 +628,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -466, y: 230}
+  m_AnchoredPosition: {x: -466, y: 250}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &129112011
@@ -2170,7 +2170,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1728424725}
         m_TargetAssemblyTypeName: NodeInteractionController, Assembly-CSharp
-        m_MethodName: NoramlNodeInteraction
+        m_MethodName: LongNodeInteraction
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2185,7 +2185,67 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1728424725}
         m_TargetAssemblyTypeName: NodeInteractionController, Assembly-CSharp
-        m_MethodName: NoramlNodeInteraction
+        m_MethodName: LongNodeInteraction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  leftUpEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1728424725}
+        m_TargetAssemblyTypeName: NodeInteractionController, Assembly-CSharp
+        m_MethodName: LongNodeEndInteraction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  rightUpEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1728424725}
+        m_TargetAssemblyTypeName: NodeInteractionController, Assembly-CSharp
+        m_MethodName: LongNodeEndInteraction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  leftHoldingEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1728424725}
+        m_TargetAssemblyTypeName: NodeInteractionController, Assembly-CSharp
+        m_MethodName: LongNodeInteraction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  rightHoldingEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1728424725}
+        m_TargetAssemblyTypeName: NodeInteractionController, Assembly-CSharp
+        m_MethodName: LongNodeInteraction
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2278,7 +2338,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 88.99998, y: 230}
+  m_AnchoredPosition: {x: 88.99998, y: 250}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &494853314
@@ -2362,7 +2422,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -281.00003, y: 230}
+  m_AnchoredPosition: {x: -281.00003, y: 250}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &495569519
@@ -3870,7 +3930,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 459, y: 230}
+  m_AnchoredPosition: {x: 459, y: 250}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &732124738
@@ -4121,7 +4181,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -96.00002, y: 230}
+  m_AnchoredPosition: {x: -96.00002, y: 250}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &781078486
@@ -7115,7 +7175,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 640, y: 230}
+  m_AnchoredPosition: {x: 640, y: 250}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1290314892
@@ -7294,10 +7354,6 @@ PrefabInstance:
     - target: {fileID: 8207292853598898761, guid: 1f1c33c18894046a384538526dc9767f, type: 3}
       propertyPath: m_Name
       value: LongNote
-      objectReference: {fileID: 0}
-    - target: {fileID: 8207292853598898761, guid: 1f1c33c18894046a384538526dc9767f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f1c33c18894046a384538526dc9767f, type: 3}
@@ -10371,7 +10427,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 273.99997, y: 230}
+  m_AnchoredPosition: {x: 273.99997, y: 250}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1932318486
@@ -10935,7 +10991,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -651, y: 230}
+  m_AnchoredPosition: {x: -651, y: 250}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1986458757

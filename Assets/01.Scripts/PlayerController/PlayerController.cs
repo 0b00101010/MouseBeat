@@ -19,17 +19,47 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private IntEvent rightEvent;
 
+    [Space(30)]
+    [SerializeField]
+    private IntEvent leftUpEvent;
+
+    [SerializeField]
+    private IntEvent rightUpEvent;
+
+    [Space(30)]
+    [SerializeField]
+    private IntEvent leftHoldingEvent;
+    
+    [SerializeField]
+    private IntEvent rightHoldingEvent;
+
     private void Update(){
         SetPosition();
         GetAdjacentLineValue();
 
-        switch(Input.anyKeyDown){
+        switch(Input.anyKey){
             case var k when Input.GetKeyDown(KeyCode.Z)||Input.GetMouseButtonDown(0):
             leftEvent.Invoke(leftValue);
             break; 
 
             case var k when Input.GetKeyDown(KeyCode.X)||Input.GetMouseButtonDown(1):
             rightEvent.Invoke(rightValue);   
+            break;
+
+            case var k when Input.GetKeyUp(KeyCode.Z)||Input.GetMouseButtonUp(0):
+            leftUpEvent.Invoke(leftValue);
+            break; 
+
+            case var k when Input.GetKeyUp(KeyCode.X)||Input.GetMouseButtonUp(1):
+            rightUpEvent.Invoke(rightValue);   
+            break;
+
+            case var k when Input.GetKey(KeyCode.Z) || Input.GetMouseButton(0):
+            leftHoldingEvent.Invoke(leftValue);
+            break;
+
+            case var k when Input.GetKey(KeyCode.X) || Input.GetMouseButton(1):
+            rightHoldingEvent.Invoke(rightValue);
             break;
         }
     }

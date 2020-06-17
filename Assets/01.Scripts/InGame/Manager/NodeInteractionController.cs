@@ -36,12 +36,27 @@ public class NodeInteractionController : MonoBehaviour
             activeNormalNodes[position][0]?.Interaction();
         }catch{
             // FIXME : Empty catch
+            // () => activeNormalNodes[position]?[0]?.Interaction();
+
             return ;
         }
     }
 
     public void LongNodeInteraction(int position){
-        
+        try{
+            activeLongNodes[position][0]?.Interaction();        
+        }catch{
+            return;
+        }
+
+    }
+
+    public void LongNodeEndInteraction(int position){
+        try{
+            activeLongNodes[position][0]?.EndInteraction();        
+        }catch{
+            return;
+        }
     }
 
     public void LongNodeTailStart(int position){

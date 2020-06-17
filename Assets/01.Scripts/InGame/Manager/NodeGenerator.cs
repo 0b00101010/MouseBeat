@@ -46,6 +46,18 @@ public class NodeGenerator : MonoBehaviour
         }
     }
 
+    private void Start(){
+        Coroutine().Start(this);
+    }
+
+    public IEnumerator Coroutine(){
+        while(true){
+            // NormalNodeGenerate();
+            LongNodeGenerate();
+            yield return YieldInstructionCache.WaitSeconds(2.0f);
+        }
+    }
+
     public void NormalNodeGenerate(int index){
         Node node = GetAvaliableNode(normalNodes);
         node.Execute(startPositions[index], endPositions[index], index);
@@ -72,7 +84,7 @@ public class NodeGenerator : MonoBehaviour
         node.Execute(startPositions[index], endPositions[index], index);
 
         IEnumerator coroutine() {
-            yield return YieldInstructionCache.WaitSeconds(0.25f);
+            yield return YieldInstructionCache.WaitSeconds(2.25f);
             LongNodeStop(index);
         }
 
