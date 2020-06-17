@@ -25,6 +25,12 @@ UnityVersion : 2020.1.0b12
 랜덤한 위치에 Long Node 하나를 생성함
 ```
 
+<br>
+
+---
+
+<br>
+
 ## Node 
 
 Normal Node
@@ -103,7 +109,12 @@ Judge Good : Good 판정 값
 노트를 아예 처리 하지 않을 경우에는 Miss로 처리
 ```
 
----
+<br>
+
+--- 
+
+<br>
+
 
 ## Effect
 
