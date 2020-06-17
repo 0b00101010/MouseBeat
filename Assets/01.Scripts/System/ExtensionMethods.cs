@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using Debug = UnityEngine.Debug;
 
 public static class ExtensionMethods{
@@ -16,6 +17,19 @@ public static class ExtensionMethods{
     public static void Log(this string value){
         Debug.Log(value);
     }
+
+    public static int[] IndexOfMany(this string value, string findValue){
+        List<int> indexs = new List<int>();
+
+        for(int i = 0; i < value.Length; i++){
+            if(value[i].Equals(findValue.First())){
+                indexs.Add(i);
+            }
+        }
+
+        return indexs.ToArray();
+    }
+
 
     public static float Distance(this Vector2 positionA, Vector2 positionB){
         return Vector2.Distance(positionA, positionB);
