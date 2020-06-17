@@ -90,13 +90,17 @@ public class LongNode : Node
     }
 
     public void EndInteraction(){
+        if(!isInteraction)
+            return;
+
         isFailedInteraction = true;
         ObjectOff();
     }
         
     public override void FailedInteraction(){
-        InGameManager.instance.scoreManager.GetScore(0, 0);
-        InGameManager.instance.nodeInteractionController.RemoveActiveLongNode(this, positionIndex);
+        InGameManager.instance.scoreManager.GetScore(0, 0); 
+        isFailedInteraction = true;
+        ObjectOff();
     }
 
     private void HeadExecute(){
@@ -109,7 +113,7 @@ public class LongNode : Node
 
         headTween.OnComplete(() => {
             if(!isInteraction){
-                ObjectOff();
+                FailedInteraction();
             }
         });
     }

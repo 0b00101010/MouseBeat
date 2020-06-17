@@ -1,12 +1,22 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IKeyObserver
 {
+    private bool isHolding;
+
     private int leftValue;
     private int rightValue;
+
+    private int leftHoldingValue;
+    private int rightHoldingValue;
+
+    private Dictionary<KeyCode,Action> keyDownActions = new Dictionary<KeyCode, Action>();
+    private Dictionary<KeyCode,Action> keyUpActions = new Dictionary<KeyCode, Action>();
+    private Dictionary<KeyCode,Action> keyHoldingActions = new Dictionary<KeyCode, Action>();
 
     [Header("Objects")]
     [SerializeField]
@@ -33,34 +43,66 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private IntEvent rightHoldingEvent;
 
+    private void Awake(){
+        keyDownActions.Add(KeyCode.Mouse0, () => {
+            leftEvent.Invoke(leftValue);
+            leftHoldingValue = leftValue;
+        });
+
+        keyDownActions.Add(KeyCode.Mouse1, () => {
+            rightEvent.Invoke(rightValue);
+            rightHoldingValue = rightValue;
+        });
+
+        keyUpActions.Add(KeyCode.Mouse0, () => {
+            leftUpEvent.Invoke(leftValue);
+        });
+
+        keyUpActions.Add(KeyCode.Mouse1, () => {
+            rightUpEvent.Invoke(rightValue);
+        });
+
+        keyHoldingActions.Add(KeyCode.Mouse0, () => {
+            if(leftValue.Equals(leftHoldingValue)){
+                leftHoldingEvent.Invoke(leftHoldingValue);
+            } else {
+                leftUpEvent.Invoke(leftHoldingValue);
+            }
+        });
+
+        keyHoldingActions.Add(KeyCode.Mouse1, () => {
+            if(rightValue.Equals(rightHoldingValue)){
+                rightHoldingEvent.Invoke(rightHoldingValue);
+            } else {
+                rightUpEvent.Invoke(rightHoldingValue);
+            }
+        });
+    }
+
+    private void Start(){
+        MouseInputHandler.instance.AddObserver(this);
+    }
+
     private void Update(){
         SetPosition();
         GetAdjacentLineValue();
+    }
 
-        switch(Input.anyKey){
-            case var k when Input.GetKeyDown(KeyCode.Z)||Input.GetMouseButtonDown(0):
-            leftEvent.Invoke(leftValue);
-            break; 
+    public void KeyDownNotify(KeyCode key){
+        if(keyDownActions.ContainsKey(key)){
+            keyDownActions[key]();
+        }
+    }
 
-            case var k when Input.GetKeyDown(KeyCode.X)||Input.GetMouseButtonDown(1):
-            rightEvent.Invoke(rightValue);   
-            break;
+    public void KeyHoldingNotify(KeyCode key){
+        if(keyHoldingActions.ContainsKey(key)){
+            keyHoldingActions[key]();
+        }
+    }
 
-            case var k when Input.GetKeyUp(KeyCode.Z)||Input.GetMouseButtonUp(0):
-            leftUpEvent.Invoke(leftValue);
-            break; 
-
-            case var k when Input.GetKeyUp(KeyCode.X)||Input.GetMouseButtonUp(1):
-            rightUpEvent.Invoke(rightValue);   
-            break;
-
-            case var k when Input.GetKey(KeyCode.Z) || Input.GetMouseButton(0):
-            leftHoldingEvent.Invoke(leftValue);
-            break;
-
-            case var k when Input.GetKey(KeyCode.X) || Input.GetMouseButton(1):
-            rightHoldingEvent.Invoke(rightValue);
-            break;
+    public void KeyUpNotify(KeyCode key){
+        if(keyUpActions.ContainsKey(key)){
+            keyUpActions[key]();
         }
     }
 
@@ -78,6 +120,10 @@ public class PlayerController : MonoBehaviour
 
         leftValue = selectObject.LeftIndex;
         rightValue = selectObject.RightIndex;
+    }
+
+    private void OnDestroy() {
+        MouseInputHandler.instance.RemoveObserver(this);    
     }
 
 }
