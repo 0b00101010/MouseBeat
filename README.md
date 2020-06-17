@@ -9,6 +9,22 @@ UnityVersion : 2020.1.0b12
 
 # Designer Values
 
+## Function
+> Hierarchy/InGameManager 오브젝트 NodeGeneartor 스크립트에 Button Tap에서 사용 가능
+
+
+* Normal Node Generate
+
+```
+랜덤한 위치에 Normal Node 하나를 생성함
+```
+
+* Long Node Generate
+
+```
+랜덤한 위치에 Long Node 하나를 생성함
+```
+
 ## Node 
 
 Normal Node
@@ -92,7 +108,7 @@ Judge Good : Good 판정 값
 ## Effect
 
 * Judge Effect / 판정시 화면 중앙에 출력되는 판정 이미지
-> InGameManager 오브젝트의 ScoreManager 스크립트에 있는 Judge Effect 탭에서 수정 가능 
+> Hierarchy/InGameManager 오브젝트의 ScoreManager 스크립트에 있는 Judge Effect 탭에서 수정 가능 
 ```
 Size Up Value : Judge Image가 얼마나 커질지 설정하는 값 
 ex) Size Up Value가 1.5 일 경우 1.5배 만큼 커짐
