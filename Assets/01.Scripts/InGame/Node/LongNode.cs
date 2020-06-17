@@ -51,8 +51,7 @@ public class LongNode : Node
         lineRenderer.SetPosition(0, headVector);
         lineRenderer.SetPosition(1, tailVector);
 
-        HeadCoroutine().Start(this);
-
+        HeadExecute();
     }
 
     public override void Interaction(){
@@ -71,7 +70,7 @@ public class LongNode : Node
             startPosition.Distance(gameObject.transform.position) / startPosition.Distance(endPosition);
 
             switch(progressPosition){
-                case var k when judgePerfect - progressPosition < 0.1f:
+                case var k when judgePerfect - progressPosition < 0.05f:
                 judgeLevel = 4;
                 break;
 
@@ -100,45 +99,31 @@ public class LongNode : Node
         InGameManager.instance.nodeInteractionController.RemoveActiveLongNode(this, positionIndex);
     }
 
-    public void TailStart(){
-        TailCoroutine().Start(this);
-    }
-
-    private IEnumerator HeadCoroutine(){
+    private void HeadExecute(){
         headTween = DOTween.To(() => headVector, value => headVector = value, endPosition, defaultSpeed);
         
-        headTween.OnComplete(
-            () => {
-                if(!isInteraction){
-                    ObjectOff();
-                }
-            }
-        );
-        
-        while(true){
-            if(headVector.Distance(endPosition) < 0.05f){
-                gameObject.transform.position = headVector;
-                break;
-            }
-
+        headTween.OnUpdate(() => {
+            gameObject.transform.position = headVector;
             lineRenderer.SetPosition(0, headVector);
-            yield return YieldInstructionCache.WaitFrame;
-        }
+        });
+
+        headTween.OnComplete(() => {
+            if(!isInteraction){
+                ObjectOff();
+            }
+        });
     }
 
-    private IEnumerator TailCoroutine(){
+    public void TailExecute(){
         tailTween = DOTween.To(() => tailVector, value => tailVector = value, endPosition, defaultSpeed);
         
-        while(true){
-            if(tailVector.Distance(endPosition) < 0.05f){
-                break;
-            }
-            
+        tailTween.OnUpdate(() => {
             lineRenderer.SetPosition(1, tailVector);
-            yield return YieldInstructionCache.WaitFrame;
-        }
-
-        ObjectReset();
+        });
+        
+        tailTween.OnComplete(() => {
+            ObjectReset();
+        });
     }
 
     public void ObjectOff(){
