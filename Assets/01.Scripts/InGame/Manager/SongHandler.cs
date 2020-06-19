@@ -8,6 +8,8 @@ public class SongHandler : MonoBehaviour
 {
     private AudioSource audioSource;
     private float songProcess;
+    
+    private float delayTime;
 
     private string[] mapFileStrings;
 
@@ -22,12 +24,13 @@ public class SongHandler : MonoBehaviour
     }
 
     private IEnumerator Delay(){
+        delayTime = gameSettings["Delay"] / 1000 / audioSource.clip.length;
         yield return YieldInstructionCache.WaitRealSeconds(gameSettings["Delay"] / 1000);
         this.enabled = true;
     }
 
     private void Update(){
-        songProcess = (audioSource.time / audioSource.clip.length) - (gameSettings["Delay"] / 1000 / audioSource.clip.length);
+        songProcess = (audioSource.time / audioSource.clip.length) - delayTime;
         
         NodeGenerate();
         NodeGenerate();
@@ -35,7 +38,7 @@ public class SongHandler : MonoBehaviour
     }
 
     private void NodeGenerate(){
-        if(Mathf.Abs((songAction[0].position - songProcess)) < 0.0005){
+        if(songAction[0].position < songProcess){
             songAction[0].action();
             songAction.Remove(songAction[0]);
         }
