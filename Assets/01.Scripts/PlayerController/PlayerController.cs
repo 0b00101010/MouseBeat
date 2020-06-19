@@ -76,6 +76,40 @@ public class PlayerController : MonoBehaviour, IKeyObserver
             } else {
                 rightUpEvent.Invoke(rightHoldingValue);
             }
+        });        
+        
+        keyDownActions.Add(KeyCode.Z, () => {
+            leftEvent.Invoke(leftValue);
+            leftHoldingValue = leftValue;
+        });
+
+        keyDownActions.Add(KeyCode.X, () => {
+            rightEvent.Invoke(rightValue);
+            rightHoldingValue = rightValue;
+        });
+
+        keyUpActions.Add(KeyCode.Z, () => {
+            leftUpEvent.Invoke(leftValue);
+        });
+
+        keyUpActions.Add(KeyCode.X, () => {
+            rightUpEvent.Invoke(rightValue);
+        });
+
+        keyHoldingActions.Add(KeyCode.Z, () => {
+            if(leftValue.Equals(leftHoldingValue)){
+                leftHoldingEvent.Invoke(leftHoldingValue);
+            } else {
+                leftUpEvent.Invoke(leftHoldingValue);
+            }
+        });
+
+        keyHoldingActions.Add(KeyCode.X, () => {
+            if(rightValue.Equals(rightHoldingValue)){
+                rightHoldingEvent.Invoke(rightHoldingValue);
+            } else {
+                rightUpEvent.Invoke(rightHoldingValue);
+            }
         });
     }
 
