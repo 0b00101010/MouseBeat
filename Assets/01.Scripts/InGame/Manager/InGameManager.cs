@@ -13,9 +13,11 @@ public class InGameManager : MonoBehaviour
     
     [HideInInspector]
     public NodeInteractionController nodeInteractionController;
-
+    
+    [HideInInspector]
+    public NodeGenerator nodeGenerator;
+    
     private BackgroundController backgroundController;
-    private NodeGenerator nodeGenerator;
 
     private void Awake(){
         if(instance is null){
