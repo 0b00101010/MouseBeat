@@ -19,19 +19,12 @@ public class SongHandler : MonoBehaviour
     private void Start(){
         audioSource = gameObject.GetComponent<AudioSource>();
         ReadFile(); 
-        Delay().Start(this);
-        this.enabled = false;
-    }
-
-    private IEnumerator Delay(){
         delayTime = gameSettings["Delay"] / 1000 / audioSource.clip.length;
-        yield return YieldInstructionCache.WaitRealSeconds(gameSettings["Delay"] / 1000);
-        this.enabled = true;
     }
 
     private void Update(){
         songProcess = (audioSource.time / audioSource.clip.length) - delayTime;
-        
+    
         NodeGenerate();
         NodeGenerate();
     
