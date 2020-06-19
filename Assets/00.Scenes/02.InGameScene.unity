@@ -9631,6 +9631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreManager: {fileID: 0}
   nodeInteractionController: {fileID: 0}
+  nodeGenerator: {fileID: 0}
 --- !u!4 &1728424720
 Transform:
   m_ObjectHideFlags: 0
@@ -9657,7 +9658,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c0ce5ed943b2a48e69d1d12792006ad8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

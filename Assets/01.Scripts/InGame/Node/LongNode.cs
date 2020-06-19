@@ -104,7 +104,7 @@ public class LongNode : Node
     }
 
     private void HeadExecute(){
-        headTween = DOTween.To(() => headVector, value => headVector = value, endPosition, defaultSpeed);
+        headTween = DOTween.To(() => headVector, value => headVector = value, endPosition, defaultSpeed).SetEase(easeType);
         
         headTween.OnUpdate(() => {
             gameObject.transform.position = headVector;
@@ -119,7 +119,7 @@ public class LongNode : Node
     }
 
     public void TailExecute(){
-        tailTween = DOTween.To(() => tailVector, value => tailVector = value, endPosition, defaultSpeed);
+        tailTween = DOTween.To(() => tailVector, value => tailVector = value, endPosition, defaultSpeed).SetEase(easeType);
         
         tailTween.OnUpdate(() => {
             lineRenderer.SetPosition(1, tailVector);
