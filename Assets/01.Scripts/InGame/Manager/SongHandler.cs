@@ -17,10 +17,17 @@ public class SongHandler : MonoBehaviour
     private void Start(){
         audioSource = gameObject.GetComponent<AudioSource>();
         ReadFile(); 
+        Delay().Start(this);
+        this.enabled = false;
+    }
+
+    private IEnumerator Delay(){
+        yield return YieldInstructionCache.WaitRealSeconds(gameSettings["Delay"] / 1000);
+        this.enabled = true;
     }
 
     private void Update(){
-        songProcess = (audioSource.time / audioSource.clip.length);
+        songProcess = (audioSource.time / audioSource.clip.length) - (gameSettings["Delay"] / 1000 / audioSource.clip.length);
         
         NodeGenerate();
         NodeGenerate();
@@ -95,7 +102,13 @@ public class SongHandler : MonoBehaviour
 
             } else {
                 var tempStrings = mapFileStrings[i].Split(':')[1].Split('=');
-                GameSettingAction(tempStrings[0], float.Parse(tempStrings[1]));
+                
+                if(!gameSettings.ContainsKey(tempStrings[0])){
+                    gameSettings.Add(tempStrings[0], float.Parse(tempStrings[1]));
+                } else {
+                    GameSettingAction(tempStrings[0], float.Parse(tempStrings[1]));
+
+                }
             }
         }
     }
@@ -125,10 +138,7 @@ public class SongHandler : MonoBehaviour
     }
 
     private void Setting(string valueName, float value){
-        if(gameSettings.ContainsKey(valueName)){
-            gameSettings[valueName] = value;
-        }else{
-            gameSettings.Add(valueName, value);
-        }
+        
+        gameSettings[valueName] = value;
     }
 }
