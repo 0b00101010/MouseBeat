@@ -9855,9 +9855,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e3d246e81353d4e3dbbb3201974783f5, type: 3}
   - {fileID: 21300000, guid: 460baed35f7974e99a7bc82327100bd4, type: 3}
   - {fileID: 21300000, guid: b182924d890f14965ade292309b07993, type: 3}
-  sizeUpValue: 1.5
-  duration: 0.25
-  easeType: 1
+  sizeUpValue: 1.25
+  duration: 0.75
+  easeType: 24
   deathEvent:
     m_PersistentCalls:
       m_Calls:

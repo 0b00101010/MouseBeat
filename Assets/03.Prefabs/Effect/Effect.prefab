@@ -216,8 +216,9 @@ MonoBehaviour:
   - {fileID: 6862189425218000031}
   - {fileID: 6862189424712106697}
   circleImage: {fileID: 6862189424622409282}
-  leftTurnAngle: 430
-  rightTurnAngle: 390
+  leftTurnAngle: 180
+  rightTurnAngle: 240
+  sizeUpValue: 1.25
 --- !u!1 &6862189425218000025
 GameObject:
   m_ObjectHideFlags: 0
