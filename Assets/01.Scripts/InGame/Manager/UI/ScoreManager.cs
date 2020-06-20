@@ -73,7 +73,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     public void GetScore(int judge, int score){
-        this.score += score;
+        this.score += score * comboCount / 2;
         scoreText.text = this.score.ToString();
 
         switch(judge){
