@@ -19,7 +19,9 @@ public class StartSceneManager : MonoBehaviour
     public void Update(){
         if(Input.GetMouseButtonDown(0)){
             if(isTitle){
-                titleWidget.CloseWidget(stageSelectWidget.OpenWidget);
+                titleWidget.CloseWidget(() => {
+                    stageSelectWidget.OpenWidget();
+                });
             } else {
                 
             }

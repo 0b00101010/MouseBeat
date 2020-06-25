@@ -9,14 +9,17 @@ public class UIWidget : MonoBehaviour
     [Header("Objects")]
     [SerializeField]
     private Image[] items;
+    protected Image[] Items => items;
 
     [Header("Values")]
     [SerializeField]
     private float duration;
+    protected float Duration => duration;
 
     private Tween widgetTween;
+    protected Tween WidgetTween {get => widgetTween; set{widgetTween = value;}}
 
-    public void OpenWidget(){
+    public virtual void OpenWidget(){
         gameObject.SetActive(true);
 
         for(int i = 0; i < items.Length; i++){
@@ -28,7 +31,7 @@ public class UIWidget : MonoBehaviour
         }
     }
 
-    public void OpenWidget(Action callback = null){
+    public virtual void OpenWidget(Action callback = null){
         gameObject.SetActive(true);
 
         for(int i = 0; i < items.Length; i++){
@@ -44,7 +47,7 @@ public class UIWidget : MonoBehaviour
         });
     }
 
-    public void CloseWidget(){
+    public virtual void CloseWidget(){
         for(int i = 0; i < items.Length; i++){
             if(i.Equals(items.Length - 1)){
                 widgetTween = items[i].DOFade(0, duration);
@@ -58,7 +61,7 @@ public class UIWidget : MonoBehaviour
         });
     }    
     
-    public void CloseWidget(Action callback = null){
+    public virtual void CloseWidget(Action callback = null){
         for(int i = 0; i < items.Length; i++){
             if(i.Equals(items.Length - 1)){
                 widgetTween = items[i].DOFade(0, duration);
