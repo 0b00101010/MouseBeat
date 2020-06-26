@@ -11,6 +11,10 @@ public class StageWidget : UIWidget
     [SerializeField]
     private Transform underlinePosition;
 
+    [Header("Objects")]
+    [SerializeField]
+    private SongInformation[] songObjects;
+
     public override void OpenWidget(){
         gameObject.SetActive(true);
         OpenCoroutine().Start(this);
@@ -21,11 +25,18 @@ public class StageWidget : UIWidget
         WidgetTween = Items[0].DOFade(1, Duration);
         yield return WidgetTween.WaitForCompletion();
 
-
         Items[1].gameObject.transform.DOMove(textPosition.position, Duration);
         Items[2].gameObject.transform.DOMove(underlinePosition.position, Duration);
         
         Items[1].DOFade(1, Duration);
-        Items[2].DOFade(1, Duration);
+        WidgetTween = Items[2].DOFade(1, Duration);
+
+        Items[3].DOFade(1, Duration);
+
+        yield return WidgetTween.WaitForCompletion();
+
+        for(int i = 0; i < songObjects.Length; i++){
+            songObjects[i].Generate();
+        }
     }
 }
