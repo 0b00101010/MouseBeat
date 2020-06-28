@@ -28,4 +28,6 @@ public class SongProcessAction{
             _action = value;
         }
     }
+
+    public static int generateSequence = 1;
 }

@@ -30,22 +30,25 @@ public class SongHandler : MonoBehaviour
 
     private IEnumerator SongGenerateCoroutine(){
         yield return YieldInstructionCache.WaitRealSeconds(delayTime);
-
-
+        
         while(songProgressActions.Count > 0){
             if(songProgressActions[0].position != -1){
-                songProgressActions[0].action();
-                songProgressActions.RemoveAt(0);
+                int beforePosition; 
+            
+                do{
+                    songProgressActions[0].action();
+                    beforePosition = songProgressActions[0].position;
+                    songProgressActions.RemoveAt(0);
+                }while(beforePosition != 0 && songProgressActions[0].position.Equals(beforePosition));
                 
                 yield return YieldInstructionCache.WaitRealSeconds(waitingTime);
             } else {
                 delayTime = 0;
 
                 do{
-                    songProgressActions.RemoveAt(0);
                     songProgressActions[0].action();
-                }while(songProgressActions[0].position != -1);
-
+                    songProgressActions.RemoveAt(0);
+                }while(songProgressActions[0].position == -1);
                 
                 delayTime = gameSettings["Delay"] / 1000 / audioSource.clip.length;
                 waitingTime = 60 / gameSettings["BPM"] / gameSettings["Split"];
@@ -62,6 +65,8 @@ public class SongHandler : MonoBehaviour
         mapFileStrings = tempString.Split('\n');
         
         for(int i = 0; i < mapFileStrings.Length; i++){
+            bool addedCommand = false;
+
             if(mapFileStrings[i].StartsWith(":")){
                 var settingStrings = mapFileStrings[i].Split(':')[1].Split('=');
   
@@ -78,7 +83,7 @@ public class SongHandler : MonoBehaviour
                 songProgressActions.Add(newAction);
                 continue;
             }   
-
+            
             Action<string, Func<int, Action>> addProgressAction = (value, nodeAction) => {
                 var nodePositions = mapFileStrings[i].IndexOfMany(value);
                 SongProcessAction newAction = new SongProcessAction();
@@ -86,21 +91,29 @@ public class SongHandler : MonoBehaviour
                 for(int j = 0; j < nodePositions.Length; j++){
                     
                     newAction.action = nodeAction(nodePositions[j]);
-                    newAction.position = nodePositions[j];
+                    newAction.position = SongProcessAction.generateSequence;
 
                     songProgressActions.Add(newAction); 
+
+                    SongProcessAction.generateSequence++;
+
+                    addedCommand = true;   
                     return;
                 }
-
-                newAction.action = () => {};
-                newAction.position = 0;
-                
-                songProgressActions.Add(newAction); 
             };
 
             addProgressAction("X", NormalNodeGenerateAction);
             addProgressAction("M", LongNodeStartGenerateAction);
             addProgressAction("W", LongNodeEndGenerateAction);
+
+            if(!addedCommand){
+                SongProcessAction newAction = new SongProcessAction();
+
+                newAction.action = () => {};
+                newAction.position = 0;
+                
+                songProgressActions.Add(newAction);
+            }
         }
     }
 
