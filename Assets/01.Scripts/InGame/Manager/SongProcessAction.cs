@@ -4,12 +4,12 @@ using UnityEngine;
 [Serializable]
 public class SongProcessAction{
     [SerializeField]
-    private float _position;
+    private int _position;
     
     [SerializeField]
     private Action _action;
 
-    public float position{
+    public int position{
         get{
             return _position;
         }
