@@ -3,108 +3,116 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class SongHandler : MonoBehaviour
 {
     private AudioSource audioSource;
     private float songProcess;
     
     private float delayTime;
+    private float waitingTime;
 
     private string[] mapFileStrings;
 
     private Dictionary<string, float> gameSettings = new Dictionary<string, float>(); 
-    private List<SongProcessAction> songAction = new List<SongProcessAction>();
+    private List<SongProcessAction> songProgressActions = new List<SongProcessAction>();
+
+    private void Awake(){
+        audioSource = gameObject.GetComponent<AudioSource>();
+    }
 
     private void Start(){
-        audioSource = gameObject.GetComponent<AudioSource>();
         ReadFile(); 
-        delayTime = gameSettings["Delay"] / 1000 / audioSource.clip.length;
+        delayTime = gameSettings["Delay"] / 1000;
+        waitingTime = 60 / gameSettings["BPM"] / gameSettings["Split"];
+        
+        SongGenerateCoroutine().Start(this);
     }
 
-    private void Update(){
-        songProcess = (audioSource.time / audioSource.clip.length) - delayTime;
-    
-        NodeGenerate();
-        NodeGenerate();
-    
-    }
+    private IEnumerator SongGenerateCoroutine(){
+        yield return YieldInstructionCache.WaitRealSeconds(delayTime);
+        
+        while(songProgressActions.Count > 0){
+            if(songProgressActions[0].position != -1){
+                int beforePosition; 
+            
+                do{
+                    songProgressActions[0].action();
+                    beforePosition = songProgressActions[0].position;
+                    songProgressActions.RemoveAt(0);
+                }while(beforePosition != 0 && songProgressActions[0].position.Equals(beforePosition));
+                
+                yield return YieldInstructionCache.WaitRealSeconds(waitingTime);
+            } else {
+                delayTime = 0;
 
-    private void NodeGenerate(){
-        if(songAction[0].position < songProcess){
-            songAction[0].action();
-            songAction.Remove(songAction[0]);
+                do{
+                    songProgressActions[0].action();
+                    songProgressActions.RemoveAt(0);
+                }while(songProgressActions[0].position == -1);
+                
+                delayTime = gameSettings["Delay"] / 1000 / audioSource.clip.length;
+                waitingTime = 60 / gameSettings["BPM"] / gameSettings["Split"];
+
+                if(delayTime > 0){
+                    yield return YieldInstructionCache.WaitRealSeconds(delayTime);
+                }
+            }
         }
     }
-
+    
     private void ReadFile(){
         var tempString = Resources.Load<TextAsset>("MapFile/StepEdit").text;
         mapFileStrings = tempString.Split('\n');
         
-        var count = 0;
-
         for(int i = 0; i < mapFileStrings.Length; i++){
-            if(!mapFileStrings[i].StartsWith(":")){
-                count = i;
-            }
-        }
+            bool addedCommand = false;
 
-        for(int i = 0; i < mapFileStrings.Length; i++){
-            if(!mapFileStrings[i].StartsWith(":")){
-                float processValue = (float)i / (float)count;
+            if(mapFileStrings[i].StartsWith(":")){
+                var settingStrings = mapFileStrings[i].Split(':')[1].Split('=');
+  
+                if(!gameSettings.ContainsKey(settingStrings[0])){
+                    gameSettings.Add(settingStrings[0], float.Parse(settingStrings[1]));                
+                    continue;
+                }
+
+                SongProcessAction newAction = new SongProcessAction();
                 
-                List<int> positionValues = mapFileStrings[i].IndexOfMany("X").ToList();
+                newAction.action = GameSettingAction(settingStrings[0], float.Parse(settingStrings[1]));
+                newAction.position = -1;
+    
+                songProgressActions.Add(newAction);
+                continue;
+            }   
+            
+            Action<string, Func<int, Action>> addProgressAction = (value, nodeAction) => {
+                var nodePositions = mapFileStrings[i].IndexOfMany(value);
+                SongProcessAction newAction = new SongProcessAction();
 
-                if(positionValues.Count > 0){
-                    for(int j = 0; j < positionValues.Count; j++){
-                        SongProcessAction processAction = new SongProcessAction();
+                for(int j = 0; j < nodePositions.Length; j++){
+                    
+                    newAction.action = nodeAction(nodePositions[j]);
+                    newAction.position = SongProcessAction.generateSequence;
 
-                        processAction.position = processValue;
-                        processAction.action = NormalNodeGenerateAction(positionValues[j]);
-                        
-                        songAction.Add(processAction);
-                    }
+                    songProgressActions.Add(newAction); 
+
+                    SongProcessAction.generateSequence++;
+
+                    addedCommand = true;   
+                    return;
                 }
+            };
 
-                positionValues.Clear();
+            addProgressAction("X", NormalNodeGenerateAction);
+            addProgressAction("M", LongNodeStartGenerateAction);
+            addProgressAction("W", LongNodeEndGenerateAction);
 
-                positionValues = mapFileStrings[i].IndexOfMany("M").ToList();
+            if(!addedCommand){
+                SongProcessAction newAction = new SongProcessAction();
 
-                if(positionValues.Count > 0){
-                    for(int j = 0; j < positionValues.Count; j++){
-                        SongProcessAction processAction = new SongProcessAction();
-
-                        processAction.position = processValue;
-                        processAction.action = LongNodeStartGenerateAction(positionValues[j]);
-                        
-                        songAction.Add(processAction);
-                    }
-                }
-
-                positionValues.Clear();
-
-                positionValues = mapFileStrings[i].IndexOfMany("W").ToList();
-
-                if(positionValues.Count > 0){
-                    for(int j = 0; j < positionValues.Count; j++){
-                        SongProcessAction processAction = new SongProcessAction();
-
-                        processAction.position = processValue;
-                        processAction.action = LongNodeEndGenerateAction(positionValues[j]);
-                        
-                        songAction.Add(processAction);
-                    }
-                }
-
-            } else {
-                var tempStrings = mapFileStrings[i].Split(':')[1].Split('=');
+                newAction.action = () => {};
+                newAction.position = 0;
                 
-                if(!gameSettings.ContainsKey(tempStrings[0])){
-                    gameSettings.Add(tempStrings[0], float.Parse(tempStrings[1]));
-                } else {
-                    GameSettingAction(tempStrings[0], float.Parse(tempStrings[1]));
-
-                }
+                songProgressActions.Add(newAction);
             }
         }
     }
@@ -134,7 +142,6 @@ public class SongHandler : MonoBehaviour
     }
 
     private void Setting(string valueName, float value){
-        
         gameSettings[valueName] = value;
     }
 }
