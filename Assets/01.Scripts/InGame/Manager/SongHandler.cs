@@ -86,19 +86,18 @@ public class SongHandler : MonoBehaviour
             
             Action<string, Func<int, Action>> addProgressAction = (value, nodeAction) => {
                 var nodePositions = mapFileStrings[i].IndexOfMany(value);
-                SongProcessAction newAction = new SongProcessAction();
+                
+                SongProcessAction.generateSequence++;
 
                 for(int j = 0; j < nodePositions.Length; j++){
+                    SongProcessAction newAction = new SongProcessAction();
                     
                     newAction.action = nodeAction(nodePositions[j]);
                     newAction.position = SongProcessAction.generateSequence;
 
                     songProgressActions.Add(newAction); 
-
-                    SongProcessAction.generateSequence++;
-
+                    
                     addedCommand = true;   
-                    return;
                 }
             };
 
