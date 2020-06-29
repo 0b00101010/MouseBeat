@@ -8,6 +8,8 @@ public class SongHandler : MonoBehaviour
     private AudioSource audioSource;
     private float songProcess;
     
+    [Header("Values")]
+    [SerializeField]
     private float delayTime;
     private float waitingTime;
 
@@ -22,7 +24,7 @@ public class SongHandler : MonoBehaviour
 
     private void Start(){
         ReadFile(); 
-        delayTime = gameSettings["Delay"] / 1000;
+        // delayTime = (gameSettings["Delay"] / 1000);
         waitingTime = 60 / gameSettings["BPM"] / gameSettings["Split"];
         
         SongGenerateCoroutine().Start(this);

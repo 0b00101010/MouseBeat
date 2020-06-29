@@ -2166,6 +2166,8 @@ MonoBehaviour:
   - {fileID: 109407605}
   - {fileID: 1691923164}
   - {fileID: 566726083}
+  leftAreaImage: {fileID: 1212348335}
+  rightAreaImage: {fileID: 930510360}
   leftEvent:
     m_PersistentCalls:
       m_Calls:

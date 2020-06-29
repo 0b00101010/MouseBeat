@@ -137,3 +137,13 @@ Left Turn Angle : 왼쪽으로 회전하는 오브젝트 회전 값
 Right Turn Angle : 오른쪽으로 회전하는 오브젝트 회전 값
 Size Up Value : 증가할 크기
 ```
+
+---
+## Song Handler
+
+* Dealy
+> Hierarchy/InGameManager 오브젝트의 SongHandler 스크립트에 있는 Values 탭에서 수정 가능
+
+```
+게임 시작 선딜을 조정해 볼 수 있음
+```
