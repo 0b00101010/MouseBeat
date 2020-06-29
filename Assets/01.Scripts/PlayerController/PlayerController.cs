@@ -3,6 +3,8 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour, IKeyObserver
 {
@@ -14,6 +16,12 @@ public class PlayerController : MonoBehaviour, IKeyObserver
     private int leftHoldingValue;
     private int rightHoldingValue;
 
+    private IEnumerator leftAreaCoroutine;
+    private IEnumerator rightAreaCoroutine;
+
+    private Tween leftAreaTween;
+    private Tween rightAreaTween;
+
     private Dictionary<KeyCode,Action> keyDownActions = new Dictionary<KeyCode, Action>();
     private Dictionary<KeyCode,Action> keyUpActions = new Dictionary<KeyCode, Action>();
     private Dictionary<KeyCode,Action> keyHoldingActions = new Dictionary<KeyCode, Action>();
@@ -21,6 +29,12 @@ public class PlayerController : MonoBehaviour, IKeyObserver
     [Header("Objects")]
     [SerializeField]
     private VerticalLine[] verticalLines;
+    
+    [SerializeField]
+    private Image leftAreaImage;
+
+    [SerializeField]
+    private Image rightAreaImage;
 
     [Header("Events")]
     [SerializeField]
@@ -47,11 +61,17 @@ public class PlayerController : MonoBehaviour, IKeyObserver
         keyDownActions.Add(KeyCode.Mouse0, () => {
             leftEvent.Invoke(leftValue);
             leftHoldingValue = leftValue;
+
+            leftAreaCoroutine?.Stop(this);
+            leftAreaCoroutine = AreaClick(leftAreaImage, leftAreaTween).Start(this);
         });
 
         keyDownActions.Add(KeyCode.Mouse1, () => {
             rightEvent.Invoke(rightValue);
             rightHoldingValue = rightValue;
+
+            rightAreaCoroutine?.Stop(this);
+            rightAreaCoroutine = AreaClick(rightAreaImage, rightAreaTween).Start(this);
         });
 
         keyUpActions.Add(KeyCode.Mouse0, () => {
@@ -81,11 +101,17 @@ public class PlayerController : MonoBehaviour, IKeyObserver
         keyDownActions.Add(KeyCode.Z, () => {
             leftEvent.Invoke(leftValue);
             leftHoldingValue = leftValue;
+
+            leftAreaCoroutine?.Stop(this);
+            leftAreaCoroutine = AreaClick(leftAreaImage, leftAreaTween).Start(this);
         });
 
         keyDownActions.Add(KeyCode.X, () => {
             rightEvent.Invoke(rightValue);
             rightHoldingValue = rightValue;
+
+            rightAreaCoroutine?.Stop(this);
+            rightAreaCoroutine = AreaClick(rightAreaImage, rightAreaTween).Start(this);
         });
 
         keyUpActions.Add(KeyCode.Z, () => {
@@ -138,6 +164,16 @@ public class PlayerController : MonoBehaviour, IKeyObserver
         if(keyUpActions.ContainsKey(key)){
             keyUpActions[key]();
         }
+    }
+
+    private IEnumerator AreaClick(Image image, Tween tween){
+        tween?.Kill();
+        
+        image.color = Color.white;
+        
+        yield return YieldInstructionCache.WaitSeconds(0.1f);
+
+        tween = image.DOFade(0.5f, 0.25f).SetEase(Ease.OutCubic);
     }
 
     private void SetPosition(){
