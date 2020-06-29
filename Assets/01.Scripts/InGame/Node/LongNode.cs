@@ -118,7 +118,11 @@ public class LongNode : Node
         });
     }
 
-    public void TailExecute(){
+    public bool TailExecute(){
+        if(tailTween != null  && tailTween.IsPlaying()){
+            return true;    
+        }
+
         tailTween = DOTween.To(() => tailVector, value => tailVector = value, endPosition, defaultSpeed).SetEase(easeType);
         
         tailTween.OnUpdate(() => {
@@ -128,6 +132,8 @@ public class LongNode : Node
         tailTween.OnComplete(() => {
             ObjectReset();
         });
+
+        return false;
     }
 
     public void ObjectOff(){

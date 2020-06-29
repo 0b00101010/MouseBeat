@@ -60,6 +60,10 @@ public class NodeInteractionController : MonoBehaviour
     }
 
     public void LongNodeTailStart(int position){
-        activeLongNodes[position][0].TailExecute();
+        int index = -1;
+
+        do{
+            index++;
+        }while(activeLongNodes[position][index].TailExecute());
     }
 }
