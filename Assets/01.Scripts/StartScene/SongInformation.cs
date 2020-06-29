@@ -42,12 +42,19 @@ public class SongInformation : MonoBehaviour
     [SerializeField]
     private float duration;
 
+    [Header("Event")]
+    [SerializeField]
+    private SongEvent executeEvent;
+
+    private bool _isSelect;
     private bool isSelect{
         get{
-            return isSelect;
+            return _isSelect;
         }
         set{
-            if(isSelect){
+            _isSelect = value;
+
+            if(_isSelect){
                 selectSquare.sprite = selectSquareSprites[1];
             } else {
                 selectSquare.sprite = selectSquareSprites[0];
@@ -73,6 +80,15 @@ public class SongInformation : MonoBehaviour
         composerNameBackground.DOFade(1.0f, duration);
         composerNameText.DOFade(1.0f, duration);
 
+    }
+
+    public void Execute(){
+        isSelect = true;
+        executeEvent.Invoke(songData);
+    }
+
+    public void Exit(){
+        isSelect = false;
     }
 
 }
