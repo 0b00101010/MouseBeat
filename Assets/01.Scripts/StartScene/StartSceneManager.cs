@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using DG.Tweening;
+
 public class StartSceneManager : MonoBehaviour
 {
     [Header("Objects")]
@@ -13,6 +16,9 @@ public class StartSceneManager : MonoBehaviour
 
     [SerializeField]
     private UIWidget stageSelectWidget; 
+    
+    [SerializeField]
+    private Image blackFadeImage;
 
     private bool isTitle = true;
     private SongInformation currentSongInformation;
@@ -50,4 +56,19 @@ public class StartSceneManager : MonoBehaviour
 
         return null;
     }    
+
+    public void LoadInGameScene(){
+        if(currentSongInformation != null){
+            SceneLoadCoroutine().Start(this);
+        }
+    }
+
+    private IEnumerator SceneLoadCoroutine(){
+        blackFadeImage.gameObject.SetActive(true);
+
+        Tween fadeTween = blackFadeImage.DOFade(1.0f, 2.25f);
+        yield return fadeTween.WaitForCompletion();
+
+        SceneManager.LoadScene("01.InGameScene");
+    }
 }
