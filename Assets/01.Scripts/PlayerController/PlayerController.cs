@@ -142,6 +142,12 @@ public class PlayerController : MonoBehaviour, IKeyObserver
 
     private void SetPosition(){
         Vector2 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        newPosition.y = 0;
+
+        if(Mathf.Abs(newPosition.x) > 5.1f){
+            newPosition = 5.1f * newPosition.normalized;
+        }
+
         gameObject.transform.position = newPosition;
     }
 

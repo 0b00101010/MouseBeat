@@ -24,6 +24,8 @@ public class InGameManager : MonoBehaviour
             instance = this;
         }
 
+        Cursor.visible = false;
+
         backgroundController = gameObject.GetComponent<BackgroundController>();
         nodeInteractionController = gameObject.GetComponent<NodeInteractionController>();
         nodeGenerator = gameObject.GetComponent<NodeGenerator>();
@@ -41,6 +43,10 @@ public class InGameManager : MonoBehaviour
 
     public void GameEnd(){
 
+    }
+
+    private void OnDisable() {
+        Cursor.visible = false;
     }
 
 }
