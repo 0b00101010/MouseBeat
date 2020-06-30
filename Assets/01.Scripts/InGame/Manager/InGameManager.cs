@@ -33,7 +33,7 @@ public class InGameManager : MonoBehaviour
     }
 
     [Button("Change Background Color")]
-    private void ChangeBackgroundColor() { 
+    public void ChangeBackgroundColor() { 
         backgroundController.Execute();
     }
 

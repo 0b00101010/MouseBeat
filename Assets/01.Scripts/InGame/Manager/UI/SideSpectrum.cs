@@ -18,6 +18,9 @@ public class SideSpectrum : MonoBehaviour
         for(int i = 0; i < sideSpectrums.Length; i++){
             Vector2 firstSclae = sideSpectrums[i].gameObject.transform.localScale;
             firstSclae.y = audioData[i] * 1200 + 2;
+            if(firstSclae.y > 60){
+                InGameManager.instance.ChangeBackgroundColor();
+            }
             sideSpectrums[i].gameObject.transform.localScale = Vector2.MoveTowards(sideSpectrums[i].gameObject.transform.localScale, firstSclae, 0.1f);
         }
     }
