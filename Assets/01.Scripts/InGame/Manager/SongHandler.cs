@@ -17,7 +17,7 @@ public class SongHandler : MonoBehaviour
 
     private Dictionary<string, float> gameSettings = new Dictionary<string, float>(); 
     private List<SongProcessAction> songProgressActions = new List<SongProcessAction>();
-
+    
     private void Awake(){
         audioSource = gameObject.GetComponent<AudioSource>();
     }
@@ -27,6 +27,7 @@ public class SongHandler : MonoBehaviour
         // delayTime = (gameSettings["Delay"] / 1000);
         waitingTime = 60 / gameSettings["BPM"] / gameSettings["Split"];
         
+        audioSource.Play();
         SongGenerateCoroutine().Start(this);
     }
 
@@ -63,7 +64,10 @@ public class SongHandler : MonoBehaviour
     }
     
     private void ReadFile(){
-        var tempString = Resources.Load<TextAsset>("MapFile/StepEdit").text;
+        var tempString = GameManager.instance.SelectSong.mapTextAsset.text;
+
+        audioSource.clip = GameManager.instance.SelectSong.audioClip;
+
         mapFileStrings = tempString.Split('\n');
         
         for(int i = 0; i < mapFileStrings.Length; i++){
