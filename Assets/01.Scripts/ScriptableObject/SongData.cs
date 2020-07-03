@@ -7,5 +7,5 @@ public class SongData : ScriptableObject {
     public string songName;
     public string composerName;
 
-    public int bpm;
+    public float bpm;
 }
