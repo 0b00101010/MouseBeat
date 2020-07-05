@@ -41,6 +41,10 @@ public class NormalNode : Node
         int judgeLevel = 0;
         float position = startPosition.Distance(gameObject.transform.position)/startPosition.Distance(endPosition);
     
+        if(position < 0.5f){
+            return;
+        }
+
         switch(judgeLevel){
             case var k when (judgePerfect - position) < 0.1f:
             judgeLevel = 4;

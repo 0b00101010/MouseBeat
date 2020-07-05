@@ -55,8 +55,15 @@ public class LongNode : Node
     }
 
     public override void Interaction(){
-        if(isFailedInteraction)
+        if(isFailedInteraction){
             return;
+        }
+
+        float progressPosition = startPosition.Distance(gameObject.transform.position) / startPosition.Distance(endPosition);
+
+        if(progressPosition < 0.7f){
+            return;
+        }
 
         if(isInteraction){
             if(judgeLevel.Equals(4)){
@@ -65,9 +72,6 @@ public class LongNode : Node
             InGameManager.instance.scoreManager.GetScore(judgeLevel, score);
         }else{
             isInteraction = true;
-
-            float progressPosition = 
-            startPosition.Distance(gameObject.transform.position) / startPosition.Distance(endPosition);
 
             switch(progressPosition){
                 case var k when judgePerfect - progressPosition < 0.05f:
