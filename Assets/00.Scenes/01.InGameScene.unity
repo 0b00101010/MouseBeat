@@ -8800,7 +8800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7ae1370286b4d2a9e93b26a21b822e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectSong: {fileID: 11400000, guid: 7a69cab5da6314e998f36005b84b41d0, type: 2}
+  selectSong: {fileID: 11400000, guid: 23041a7ce55744e65b25e0c1976fa295, type: 2}
 --- !u!4 &1479496788
 Transform:
   m_ObjectHideFlags: 0
