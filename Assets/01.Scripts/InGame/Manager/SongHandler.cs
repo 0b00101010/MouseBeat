@@ -6,16 +6,17 @@ using UnityEngine;
 public class SongHandler : MonoBehaviour
 {
     private AudioSource audioSource;
-    private float songProcess;
     
     [Header("Values")]
     [SerializeField]
-    private float delayTime;
-    private float waitingTime;
+    private double offset;
+
+    private double oneBeatTime;
+    private double nextStep;
 
     private string[] mapFileStrings;
 
-    private Dictionary<string, float> gameSettings = new Dictionary<string, float>(); 
+    private Dictionary<string, double> gameSettings = new Dictionary<string, double>(); 
     private List<SongProcessAction> songProgressActions = new List<SongProcessAction>();
     
     private void Awake(){
@@ -24,45 +25,43 @@ public class SongHandler : MonoBehaviour
 
     private void Start(){
         ReadFile(); 
-        // delayTime = (gameSettings["Delay"] / 1000);
-        waitingTime = 60 / gameSettings["BPM"] / gameSettings["Split"];
         
+        double offsetForSample;
+
+        offset = (gameSettings["Delay"] / 1000);
+        offsetForSample = offset * audioSource.clip.frequency;
+
+        oneBeatTime = (60.0 / gameSettings["BPM"]) / gameSettings["Split"];
+        
+        nextStep = offsetForSample;
+
         audioSource.Play();
-        SongGenerateCoroutine().Start(this);
     }
 
-    private IEnumerator SongGenerateCoroutine(){
-        yield return YieldInstructionCache.WaitRealSeconds(delayTime);
-        
-        while(songProgressActions.Count > 0){
-            if(songProgressActions[0].position != -1){
-                int beforePosition; 
-            
-                do{
-                    songProgressActions[0].action();
-                    beforePosition = songProgressActions[0].position;
-                    songProgressActions.RemoveAt(0);
-                }while(beforePosition != 0 && songProgressActions[0].position.Equals(beforePosition));
-                
-                yield return YieldInstructionCache.WaitRealSeconds(waitingTime);
-            } else {
-                delayTime = 0;
-
-                do{
-                    songProgressActions[0].action();
-                    songProgressActions.RemoveAt(0);
-                }while(songProgressActions[0].position == -1);
-                
-                delayTime = gameSettings["Delay"] / 1000 / audioSource.clip.length;
-                waitingTime = 60 / gameSettings["BPM"] / gameSettings["Split"];
-
-                if(delayTime > 0){
-                    yield return YieldInstructionCache.WaitRealSeconds(delayTime);
-                }
-            }
+    private void Update(){
+        if(audioSource.timeSamples >= nextStep){
+            NodeGenerate().Start(this);
         }
     }
-    
+
+    private IEnumerator NodeGenerate(){
+        if(songProgressActions.Count <= 0){
+            yield break;
+        }
+
+        int beforePosition = 0;
+
+        do{
+            songProgressActions[0].action();
+            beforePosition = songProgressActions[0].position;
+            songProgressActions.RemoveAt(0);
+        }while(beforePosition != 0 && songProgressActions[0].position.Equals(beforePosition));
+                
+        nextStep += oneBeatTime * audioSource.clip.frequency;
+        
+        yield return YieldInstructionCache.WaitFrame;
+    }
+
     private void ReadFile(){
         var tempString = GameManager.instance.SelectSong.mapTextAsset.text;
 
