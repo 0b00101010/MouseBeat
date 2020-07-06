@@ -7,12 +7,17 @@ public class SongHandler : MonoBehaviour
 {
     private AudioSource audioSource;
     
-    [Header("Values")]
+    [Header("Objects")]
     [SerializeField]
+    private AudioSource metronomeSource;
+
     private double offset;
 
     private double oneBeatTime;
     private double nextStep;
+
+    private double metoronomeBeatTime;
+    private double nextMetoronomeStep;
 
     private string[] mapFileStrings;
 
@@ -21,17 +26,26 @@ public class SongHandler : MonoBehaviour
     
     private void Awake(){
         audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = GameManager.instance.SelectSong.audioClip;
 
         ReadFile(); 
         
         double offsetForSample;
 
         offset = (gameSettings["Delay"] / 1000);
+        offset.Log();
+        
         offsetForSample = offset * audioSource.clip.frequency;
-
+        offsetForSample.Log();
+        
         oneBeatTime = (60.0 / gameSettings["BPM"]) / gameSettings["Split"];
+        metoronomeBeatTime = (60.0 / gameSettings["BPM"]);
         
         nextStep = offsetForSample;
+        nextMetoronomeStep = offsetForSample;
+
+        audioSource.clip.frequency.Log();
+        audioSource.clip.samples.Log();
 
         audioSource.Play();
     }
@@ -39,6 +53,10 @@ public class SongHandler : MonoBehaviour
     private void Update(){
         if(audioSource.timeSamples >= nextStep){
             NodeGenerate().Start(this);
+        }
+
+        if(audioSource.timeSamples >= nextMetoronomeStep){
+            Metoronome().Start(this);
         }
     }
 
@@ -60,10 +78,16 @@ public class SongHandler : MonoBehaviour
         yield return YieldInstructionCache.WaitFrame;
     }
 
+    private IEnumerator Metoronome(){
+        metronomeSource.Play();
+
+        nextMetoronomeStep += metoronomeBeatTime * audioSource.clip.frequency;
+        yield return YieldInstructionCache.WaitFrame;
+    }
+
     private void ReadFile(){
         var tempString = GameManager.instance.SelectSong.mapTextAsset.text;
 
-        audioSource.clip = GameManager.instance.SelectSong.audioClip;
 
         mapFileStrings = tempString.Split('\n');
         
