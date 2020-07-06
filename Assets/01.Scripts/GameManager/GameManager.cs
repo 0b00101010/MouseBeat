@@ -35,6 +35,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private SongFile selectSong;
 
-    public SongFile SelectSong => selectSong;
+    public SongFile SelectSong {get => selectSong; set{selectSong = value;}}
 
 }

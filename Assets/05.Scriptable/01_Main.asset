@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fba31503232245e7a8b513612d88d46, type: 3}
   m_Name: 01_Main
   m_EditorClassIdentifier: 
+  songImage: {fileID: 21300000, guid: a885b676e7ac0403f84908b06b94d941, type: 3}
   eyecatch: {fileID: 21300000, guid: eda53390738db42ef983abe93dfd510e, type: 3}
   songName: Dogbite
   composerName: t+pazolite

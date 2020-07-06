@@ -9,27 +9,10 @@ public class SongInformation : MonoBehaviour
 {
     [Header("Objects")]
     [SerializeField]
-    private Image eyecatch;
-
-    [SerializeField]
     private Image selectSquare;
 
     [SerializeField]
-    private Image backgroundImage;
-
-    [Space(10)]
-    [SerializeField]
-    private Image songNameBackground;
-
-    [SerializeField]
-    private Text songNameText;
-    
-    [Space(10)]
-    [SerializeField]
-    private Image composerNameBackground;
-
-    [SerializeField]
-    private Text composerNameText;
+    private Image songImage;
 
     [Header("Resources")]
     [SerializeField]
@@ -63,27 +46,17 @@ public class SongInformation : MonoBehaviour
     }
 
     private void Awake(){
-        eyecatch.sprite = songData.eyecatch;
-        songNameText.text = songData.songName;
-        composerNameText.text = songData.composerName;
+        songImage.sprite = songData.songImage;
     }
 
     public void Generate(){
-        eyecatch.DOFade(1.0f, duration);
+        songImage.DOFade(1.0f, duration);
         selectSquare.DOFade(1.0f, duration);
-
-        backgroundImage.DOFade(1.0f, duration);
-
-        songNameBackground.material.DOFade(1.0f, duration);
-        songNameText.DOFade(1.0f, duration);
-
-        composerNameBackground.DOFade(1.0f, duration);
-        composerNameText.DOFade(1.0f, duration);
-
     }
 
     public void Execute(){
         isSelect = true;
+        GameManager.instance.SelectSong = songData.songFile;
         executeEvent.Invoke(songData);
     }
 
