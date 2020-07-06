@@ -554,7 +554,7 @@ RectTransform:
   m_GameObject: {fileID: 185811724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.75, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1447903468}
   m_RootOrder: 1
@@ -1010,7 +1010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb439adbfab0429eabc00fdfb0ccfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateAngle: 0.5
+  rotateAngle: 0.2
 --- !u!114 &376159321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1893,7 +1893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb439adbfab0429eabc00fdfb0ccfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateAngle: 1.5
+  rotateAngle: -0.3
 --- !u!114 &847639440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2448,7 +2448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb439adbfab0429eabc00fdfb0ccfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateAngle: 1
+  rotateAngle: 0.2
 --- !u!114 &1245264544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2578,7 +2578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb439adbfab0429eabc00fdfb0ccfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateAngle: 0.8
+  rotateAngle: -0.1
 --- !u!114 &1395236903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2983,7 +2983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb439adbfab0429eabc00fdfb0ccfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateAngle: 0.5
+  rotateAngle: 0.1
 --- !u!114 &1571830447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3159,7 +3159,7 @@ RectTransform:
   m_GameObject: {fileID: 1635782414}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1447903468}
   m_RootOrder: 0
@@ -3257,7 +3257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb439adbfab0429eabc00fdfb0ccfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateAngle: 0.5
+  rotateAngle: -0.3
 --- !u!114 &1683224473
 MonoBehaviour:
   m_ObjectHideFlags: 0
