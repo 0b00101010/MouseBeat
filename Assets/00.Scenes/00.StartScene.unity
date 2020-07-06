@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 78481548}
   - component: {fileID: 78481549}
   m_Layer: 8
-  m_Name: SongInformation
+  m_Name: Charteuse Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -628,7 +628,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: eda53390738db42ef983abe93dfd510e, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1757,7 +1757,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Chartreuse Green
+  m_Text: Dogbite
 --- !u!222 &1110112159
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2151,7 +2151,7 @@ GameObject:
   - component: {fileID: 1401918339}
   - component: {fileID: 1401918338}
   m_Layer: 8
-  m_Name: SongInformation (1)
+  m_Name: Dog bite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2229,7 +2229,7 @@ MonoBehaviour:
   selectSquareSprites:
   - {fileID: 21300000, guid: a33266d855ad74df5aa0624dedd1c79c, type: 3}
   - {fileID: 21300000, guid: 4f9b87ebc56de46738b32e1e01b7ed84, type: 3}
-  songData: {fileID: 11400000, guid: 744d8ce2de1ae4774a786d8247237dca, type: 2}
+  songData: {fileID: 11400000, guid: 1ff8262118d5d4cc8a065dc40bdf61c7, type: 2}
   duration: 0.25
   executeEvent:
     m_PersistentCalls:
@@ -2943,7 +2943,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1700897119
 RectTransform:
   m_ObjectHideFlags: 0
