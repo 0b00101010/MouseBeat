@@ -124,9 +124,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _score: 10
   _reducedHp: 10
-  _defaultSpeed: 0.75
+  _defaultSpeed: 0.33
   _easeType: 1
-  _judgePerfect: 0.98
+  _judgePerfect: 0.97
   _judgeGreat: 0.9
   _judgeGood: 0.8
   fadeDuration: 1

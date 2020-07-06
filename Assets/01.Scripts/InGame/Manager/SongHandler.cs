@@ -21,9 +21,7 @@ public class SongHandler : MonoBehaviour
     
     private void Awake(){
         audioSource = gameObject.GetComponent<AudioSource>();
-    }
 
-    private void Start(){
         ReadFile(); 
         
         double offsetForSample;
