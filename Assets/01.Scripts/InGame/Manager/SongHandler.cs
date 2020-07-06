@@ -74,13 +74,13 @@ public class SongHandler : MonoBehaviour
                 var settingStrings = mapFileStrings[i].Split(':')[1].Split('=');
   
                 if(!gameSettings.ContainsKey(settingStrings[0])){
-                    gameSettings.Add(settingStrings[0], float.Parse(settingStrings[1]));                
+                    gameSettings.Add(settingStrings[0], double.Parse(settingStrings[1]));                
                     continue;
                 }
 
                 SongProcessAction newAction = new SongProcessAction();
                 
-                newAction.action = GameSettingAction(settingStrings[0], float.Parse(settingStrings[1]));
+                newAction.action = GameSettingAction(settingStrings[0], double.Parse(settingStrings[1]));
                 newAction.position = -1;
     
                 songProgressActions.Add(newAction);
@@ -137,13 +137,13 @@ public class SongHandler : MonoBehaviour
         };
     }
 
-    private Action GameSettingAction(string valueName, float value){
+    private Action GameSettingAction(string valueName, double value){
         return () => {
             Setting(valueName, value);
         };
     }
 
-    private void Setting(string valueName, float value){
+    private void Setting(string valueName, double value){
         gameSettings[valueName] = value;
     }
 }
