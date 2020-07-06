@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: 00_InGame
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: c0ce5ed943b2a48e69d1d12792006ad8, type: 3}
-  mapTextAsset: {fileID: 4900000, guid: 03a75af5343a54af286e2b3b1597f95d, type: 3}
+  mapTextAsset: {fileID: 4900000, guid: bb753dd2e7c964d7d999f9021056509a, type: 3}
