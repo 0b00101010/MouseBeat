@@ -14,8 +14,8 @@ public static class ExtensionMethods{
         behaivour.StopCoroutine(coroutine);
     }
 
-    public static void Log(this string value){
-        Debug.Log(value);
+    public static void Log(this object value){
+        Debug.Log(value.ToString());
     }
 
     public static int[] IndexOfMany(this string value, string findValue){
