@@ -65,16 +65,17 @@ public class SongHandler : MonoBehaviour
             yield break;
         }
 
-        int beforePosition = 0;
+        if(songProgressActions[0].position != -1){
+            int beforePosition = 0; 
 
-        do{
-            songProgressActions[0].action();
-            beforePosition = songProgressActions[0].position;
-            songProgressActions.RemoveAt(0);
-        }while(beforePosition != 0 && songProgressActions[0].position.Equals(beforePosition));
-                
-        nextStep += oneBeatTime * audioSource.clip.frequency;
-        
+            do{
+                songProgressActions[0].action();
+                beforePosition = songProgressActions[0].position;
+                songProgressActions.RemoveAt(0);
+            }while(beforePosition != 0 && songProgressActions[0].position.Equals(beforePosition));
+                    
+            nextStep += oneBeatTime * audioSource.clip.frequency;
+        }
         yield return YieldInstructionCache.WaitFrame;
     }
 
