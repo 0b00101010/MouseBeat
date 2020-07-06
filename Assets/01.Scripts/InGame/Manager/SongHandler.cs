@@ -33,19 +33,13 @@ public class SongHandler : MonoBehaviour
         double offsetForSample;
 
         offset = (gameSettings["Delay"] / 1000);
-        offset.Log();
-        
         offsetForSample = offset * audioSource.clip.frequency;
-        offsetForSample.Log();
         
         oneBeatTime = (60.0 / gameSettings["BPM"]) / gameSettings["Split"];
         metoronomeBeatTime = (60.0 / gameSettings["BPM"]);
         
         nextStep = offsetForSample;
         nextMetoronomeStep = offsetForSample;
-
-        audioSource.clip.frequency.Log();
-        audioSource.clip.samples.Log();
 
         audioSource.Play();
     }
@@ -55,9 +49,9 @@ public class SongHandler : MonoBehaviour
             NodeGenerate().Start(this);
         }
 
-        if(audioSource.timeSamples >= nextMetoronomeStep){
-            Metoronome().Start(this);
-        }
+        // if(audioSource.timeSamples >= nextMetoronomeStep){
+        //     Metoronome().Start(this);
+        // }
     }
 
     private IEnumerator NodeGenerate(){

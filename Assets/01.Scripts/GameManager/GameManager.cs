@@ -37,4 +37,7 @@ public class GameManager : MonoBehaviour
 
     public SongFile SelectSong {get => selectSong; set{selectSong = value;}}
 
+    private void Awake(){
+        Cursor.lockState = CursorLockMode.Confined;
+    }
 }
