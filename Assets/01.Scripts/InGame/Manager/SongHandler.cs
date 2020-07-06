@@ -75,7 +75,13 @@ public class SongHandler : MonoBehaviour
             }while(beforePosition != 0 && songProgressActions[0].position.Equals(beforePosition));
                     
             nextStep += oneBeatTime * audioSource.clip.frequency;
+        } else {
+            do {
+                songProgressActions[0].action();
+                songProgressActions.RemoveAt(0);    
+            }while(songProgressActions[0].position.Equals(-1));
         }
+
         yield return YieldInstructionCache.WaitFrame;
     }
 
