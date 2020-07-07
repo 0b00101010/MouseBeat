@@ -16,7 +16,7 @@ public class SideSpectrum : MonoBehaviour
     private float volume;
     private void Awake(){
         audioSource = gameObject.GetComponent<AudioSource>();
-        volume = audioSource.volume;
+        volume = 1.0f - audioSource.volume;
     }
 
     private void Update(){
@@ -24,7 +24,7 @@ public class SideSpectrum : MonoBehaviour
 
         for(int i = 0; i < sideSpectrums.Length; i++){
             Vector2 firstSclae = sideSpectrums[i].gameObject.transform.localScale;
-            firstSclae.y = (audioData[i] * 300 + 2) * volume;
+            firstSclae.y = ((audioData[i] * 800) * volume);
             sideSpectrums[i].gameObject.transform.localScale = Vector2.MoveTowards(sideSpectrums[i].gameObject.transform.localScale, firstSclae, 0.1f);
         }
     }

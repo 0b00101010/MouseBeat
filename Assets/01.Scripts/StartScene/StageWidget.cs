@@ -44,12 +44,9 @@ public class StageWidget : UIWidget
         yield return WidgetTween.WaitForCompletion();
 
         Items[1].gameObject.transform.DOMove(textPosition.position, Duration);
-        Items[2].gameObject.transform.DOMove(underlinePosition.position, Duration);
-        
-        Items[1].DOFade(1, Duration);
-        WidgetTween = Items[2].DOFade(1, Duration);
+        WidgetTween = Items[1].DOFade(1, Duration);
 
-        Items[3].DOFade(1, Duration);
+        Items[2].DOFade(1, Duration);
 
         yield return WidgetTween.WaitForCompletion();
 

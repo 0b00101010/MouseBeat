@@ -25,6 +25,9 @@ public class ScoreManager : MonoBehaviour
     private Image hpImage;
 
     [SerializeField]
+    private Text songNameText;
+
+    [SerializeField]
     private Text scoreText;
 
     [SerializeField]
@@ -59,6 +62,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake(){
         hp = defaultHP;
+        songNameText.text = GameManager.instance.GameResult.songData.songName;
     }
 
     public void GetDamage(int damage){
