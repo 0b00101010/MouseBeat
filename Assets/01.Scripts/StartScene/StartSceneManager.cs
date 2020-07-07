@@ -32,6 +32,7 @@ public class StartSceneManager : MonoBehaviour
         }
 
         else {
+            isTitle = false;
             resultSelectWidet.OpenWidget();
         }
     }
