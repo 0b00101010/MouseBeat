@@ -56,6 +56,17 @@ public class StartSceneManager : MonoBehaviour
         }
     }
 
+    public void ReturnToMain(){
+        ReturnToMainCoroutine().Start(this);
+    }
+
+    private IEnumerator ReturnToMainCoroutine(){
+        resultSelectWidet.CloseWidget();
+        yield return YieldInstructionCache.WaitSeconds(1.0f);
+        stageSelectWidget.OpenWidget();
+
+    }
+
     private SongInformation GetSongInformation(){
         Ray ray = new Ray();
         
