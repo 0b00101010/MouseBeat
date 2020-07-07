@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using UnityEngine.SceneManagement;
 
 public class InGameManager : MonoBehaviour
 {
@@ -37,12 +38,8 @@ public class InGameManager : MonoBehaviour
         backgroundController.Execute();
     }
 
-    public void Death(){
-
-    }
-
     public void GameEnd(){
-
+        SceneManager.LoadScene("00.StartScene");
     }
 
     private void OnDisable() {
