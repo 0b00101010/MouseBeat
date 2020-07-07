@@ -16,7 +16,10 @@ public class StartSceneManager : MonoBehaviour
 
     [SerializeField]
     private UIWidget stageSelectWidget; 
-    
+
+    [SerializeField]
+    private UIWidget resultSelectWidet;
+
     [SerializeField]
     private Image blackFadeImage;
 
@@ -29,7 +32,7 @@ public class StartSceneManager : MonoBehaviour
         }
 
         else {
-            
+            resultSelectWidet.OpenWidget();
         }
     }
 

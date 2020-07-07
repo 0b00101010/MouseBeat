@@ -111,6 +111,7 @@ public class ScoreManager : MonoBehaviour
 
         GameManager.instance.GameResult.judges[judge]++;
         GameManager.instance.GameResult.totalJudgeCount++;
+        GameManager.instance.GameResult.score = this.score;
         
         judgeCoroutine?.Stop(this);
         judgeCoroutine = JudgeEvent().Start(this);
