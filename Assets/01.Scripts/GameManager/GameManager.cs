@@ -34,10 +34,22 @@ public class GameManager : MonoBehaviour
     [Header("Resources")]
     [SerializeField]
     private SongFile selectSong;
-
+    private GameResult gameResult;
+    
     public SongFile SelectSong {get => selectSong; set{selectSong = value;}}
+    public GameResult GameResult => gameResult;
+
 
     private void Awake(){
         Cursor.lockState = CursorLockMode.Confined;
     }
+
+    public void NewGameStart(){
+        gameResult = new GameResult();
+    }
+
+    public void GameEnd(){
+        gameResult = null;
+    }
+
 }

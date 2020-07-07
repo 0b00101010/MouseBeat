@@ -109,6 +109,9 @@ public class ScoreManager : MonoBehaviour
             comboText.text = comboCount.ToString();
         } 
 
+        GameManager.instance.GameResult.judges[judge]++;
+        GameManager.instance.GameResult.totalJudgeCount++;
+        
         judgeCoroutine?.Stop(this);
         judgeCoroutine = JudgeEvent().Start(this);
     }

@@ -11,6 +11,10 @@ public class SongHandler : MonoBehaviour
     [SerializeField]
     private AudioSource metronomeSource;
 
+    [Header("Events")]
+    [SerializeField]
+    private VoidEvent deathEvent;
+
     private double offset;
 
     private double oneBeatTime;
@@ -56,6 +60,7 @@ public class SongHandler : MonoBehaviour
 
     private IEnumerator NodeGenerate(){
         if(songProgressActions.Count <= 0){
+            deathEvent.Invoke();
             yield break;
         }
 
