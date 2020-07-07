@@ -53,6 +53,9 @@ public class SongHandler : MonoBehaviour
             NodeGenerate().Start(this);
         }
 
+        if(audioSource.timeSamples.Equals(audioSource.clip.samples)){
+            deathEvent.Invoke();
+        }
         // if(audioSource.timeSamples >= nextMetoronomeStep){
         //     Metoronome().Start(this);
         // }
