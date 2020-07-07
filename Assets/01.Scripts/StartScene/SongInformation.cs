@@ -56,7 +56,11 @@ public class SongInformation : MonoBehaviour
 
     public void Execute(){
         isSelect = true;
+
+        GameManager.instance.NewGameStart();
+        GameManager.instance.GameResult.songData = songData;
         GameManager.instance.SelectSong = songData.songFile;
+        
         executeEvent.Invoke(songData);
     }
 

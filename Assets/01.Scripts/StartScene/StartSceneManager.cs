@@ -23,6 +23,16 @@ public class StartSceneManager : MonoBehaviour
     private bool isTitle = true;
     private SongInformation currentSongInformation;
 
+    private void Start(){
+        if(GameManager.instance.GameResult is null){
+            titleWidget.OpenWidget();
+        }
+
+        else {
+            
+        }
+    }
+
     public void Update(){
         if(Input.GetMouseButtonDown(0)){
             if(isTitle){
