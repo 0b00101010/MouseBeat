@@ -24,11 +24,16 @@ public class SongHandler : MonoBehaviour
     private double nextMetoronomeStep;
 
     private string[] mapFileStrings;
+    
+    private int defaultBackgroundChangeRemainCount = 64;
+    private int backgroundChangeRemainCount;
 
     private Dictionary<string, double> gameSettings = new Dictionary<string, double>(); 
     private List<SongProcessAction> songProgressActions = new List<SongProcessAction>();
     
     private void Awake(){
+        backgroundChangeRemainCount = defaultBackgroundChangeRemainCount;
+
         audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.clip = GameManager.instance.SelectSong.audioClip;
 
@@ -65,6 +70,11 @@ public class SongHandler : MonoBehaviour
         if(songProgressActions.Count <= 0){
             deathEvent.Invoke();
             yield break;
+        }
+
+        if(--backgroundChangeRemainCount <= 0){
+            backgroundChangeRemainCount = defaultBackgroundChangeRemainCount;
+            InGameManager.instance.ChangeBackgroundColor();
         }
 
         if(songProgressActions[0].position != -1){
