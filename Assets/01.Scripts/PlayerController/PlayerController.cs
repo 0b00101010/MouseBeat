@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour, IKeyObserver
     private VerticalLine[] verticalLines;
     
     [SerializeField]
+    private GameObject centerEffect;
+
+    [SerializeField]
     private Image leftAreaImage;
 
     [SerializeField]
@@ -177,14 +180,18 @@ public class PlayerController : MonoBehaviour, IKeyObserver
     }
 
     private void SetPosition(){
-        Vector2 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        newPosition.y = 0;
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
+        Vector2 newPosition = mousePosition;
 
-        if(Mathf.Abs(newPosition.x) > 5.1f){
-            newPosition = 5.1f * newPosition.normalized;
+        if(Mathf.Abs(newPosition.x) < 5.1f){
+            newPosition.y = gameObject.transform.position.y;
+            gameObject.transform.position = newPosition;
         }
 
-        gameObject.transform.position = newPosition;
+        if(Vector2.Distance(mousePosition, gameObject.transform.position) < 3.2f){
+            mousePosition.x = gameObject.transform.position.x;
+            centerEffect.transform.position = mousePosition;
+        }
     }
 
     private void GetAdjacentLineValue(){
