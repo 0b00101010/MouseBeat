@@ -60,7 +60,12 @@ public class PlayerController : MonoBehaviour, IKeyObserver
     [SerializeField]
     private IntEvent rightHoldingEvent;
 
+    private Color areaDefaultColor;
+
     private void Awake(){
+        areaDefaultColor = Color.white;
+        areaDefaultColor.a = 0.5f;
+
         keyDownActions.Add(KeyCode.Mouse0, () => {
             leftEvent.Invoke(leftValue);
             leftHoldingValue = leftValue;
@@ -170,13 +175,9 @@ public class PlayerController : MonoBehaviour, IKeyObserver
     }
 
     private IEnumerator AreaClick(Image image, Tween tween){
-        tween?.Kill();
-        
         image.color = Color.white;
-        
         yield return YieldInstructionCache.WaitSeconds(0.1f);
-
-        tween = image.DOFade(0.5f, 0.25f).SetEase(Ease.OutCubic);
+        image.color = areaDefaultColor;
     }
 
     private void SetPosition(){
