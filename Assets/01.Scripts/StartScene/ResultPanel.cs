@@ -135,6 +135,7 @@ public class ResultPanel : UIWidget
         WidgetTween = Items[0].DOFade(0, Duration);
         yield return WidgetTween.WaitForCompletion();
 
+        GameManager.instance.GameEnd();
         gameObject.SetActive(false);
     }
 }

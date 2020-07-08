@@ -39,7 +39,8 @@ public class InGameManager : MonoBehaviour
     }
 
     public void GameEnd(){
-        Cursor.visible = true;
+        Cursor.visible = true; 
+        instance = null;
         SceneManager.LoadScene("00.StartScene");
     }
 }

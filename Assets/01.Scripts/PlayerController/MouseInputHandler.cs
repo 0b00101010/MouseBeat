@@ -74,4 +74,8 @@ public class MouseInputHandler : MonoBehaviour
     public void RemoveObserver(IKeyObserver observer){
         this.observer = this.observer.Equals(observer) ? null : this.observer;
     }
+
+    private void OnDestroy(){
+        instance = null;
+    }
 }
