@@ -122,7 +122,7 @@ public class ResultPanel : UIWidget
         Items[1].DOFade(0, Duration);
         WidgetTween = Items[2].DOFade(0, Duration);
 
-        Items[3].DOFade(0, Duration);
+        Items[2].DOFade(0, Duration);
 
         scoreText.DOFade(10, Duration);
         accuracyText.DOFade(0, Duration);
