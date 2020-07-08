@@ -50,10 +50,16 @@ public class ResultPanel : UIWidget
         
         scoreText.text = result.score.ToString("D8");
         
-        accuracyText.text = 
-        ((result.judges[4] * 1.0f) + (result.judges[3] * 0.9f) 
-        + (result.judges[2] * 0.7f) + (result.judges[1] * 0.2f)
-        / (result.totalJudgeCount * 100.0f)).ToString("F2") + "%";
+        float accuracy = 0;
+        
+        accuracy += (float)result.judges[4] * 1.0f;
+        accuracy += (float)result.judges[3] * 0.9f;
+        accuracy += (float)result.judges[2] * 0.7f;
+        accuracy += (float)result.judges[1] * 0.2f;
+
+        accuracy /= (result.totalJudgeCount * 100);
+
+        accuracyText.text = accuracy.ToString("F2") + "%";
 
         for(int i = 0; i < judges.Length; i++){
             judges[i].text = judges[i].text + " " + result.judges[i].ToString();
