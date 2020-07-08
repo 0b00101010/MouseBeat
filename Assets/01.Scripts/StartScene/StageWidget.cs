@@ -57,7 +57,7 @@ public class StageWidget : UIWidget
 
     private void SongItemMove(Vector2 direction){
         for(int i = 0; i < songObjects.Length; i++){
-            songObjects[i].gameObject.transform.Translate(direction / 10);
+            songObjects[i].gameObject.transform.Translate(direction / 5);
         }
     }
 
