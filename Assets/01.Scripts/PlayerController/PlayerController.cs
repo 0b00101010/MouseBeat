@@ -121,6 +121,10 @@ public class PlayerController : MonoBehaviour, IKeyObserver
             rightAreaCoroutine?.Stop(this);
             rightAreaCoroutine = AreaClick(rightAreaImage, rightAreaTween).Start(this);
         });
+        
+        keyDownActions.Add(KeyCode.Escape, () => {
+            InGameManager.instance.GameEnd();
+        });
 
         keyUpActions.Add(KeyCode.Z, () => {
             leftUpEvent.Invoke(leftValue);
