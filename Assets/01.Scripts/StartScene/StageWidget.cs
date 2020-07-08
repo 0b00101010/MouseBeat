@@ -31,7 +31,35 @@ public class StageWidget : UIWidget
     [SerializeField]
     private Text bpmText;
 
+    private Vector2 topPosition;
+    private Vector2 bottomPosition;
+
     private bool isPreviewShow;
+
+    private void Start(){
+        topPosition = songObjects[0].gameObject.transform.position;
+        bottomPosition = songObjects[songObjects.Length - 1].gameObject.transform.position;
+    }
+
+    private void Update(){
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        if(scroll > 0.0f){
+            if(songObjects[0].gameObject.transform.position.y > topPosition.y){
+                SongItemMove(Vector2.down);
+            }
+        } else if(scroll < 0.0f){
+            if(songObjects[songObjects.Length - 1].gameObject.transform.position.y < topPosition.y){
+                SongItemMove(Vector2.up);
+            }
+        }
+    }
+
+    private void SongItemMove(Vector2 direction){
+        for(int i = 0; i < songObjects.Length; i++){
+            songObjects[i].gameObject.transform.Translate(direction / 10);
+        }
+    }
 
     public override void OpenWidget(){
         gameObject.SetActive(true);
