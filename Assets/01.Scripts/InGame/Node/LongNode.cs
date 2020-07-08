@@ -22,7 +22,11 @@ public class LongNode : Node
     private bool isFailedInteraction;
     private bool isInteraction;
 
+    private bool headExecute;
+
     private int judgeLevel;
+
+
 
     private new void Awake(){
         base.Awake();
@@ -72,24 +76,8 @@ public class LongNode : Node
             InGameManager.instance.scoreManager.GetScore(judgeLevel, score);
         }else{
             isInteraction = true;
-
-            switch(progressPosition){
-                case var k when judgePerfect - progressPosition < 0.05f:
-                judgeLevel = 4;
-                break;
-
-                case var k when judgeGreat < progressPosition:
-                judgeLevel = 3;
-                break;
-
-                case var k when judgeGood < progressPosition:
-                judgeLevel = 2;
-                break;
-
-                case var k when judgeGood > progressPosition:
-                judgeLevel = 1;
-                break;
-            }
+            headExecute = true;
+            judgeLevel = 4;
         }
     }
 
@@ -116,9 +104,7 @@ public class LongNode : Node
         });
 
         headTween.OnComplete(() => {
-            if(!isInteraction){
-                FailedInteraction();
-            }
+            Interaction();
         });
     }
 
@@ -131,6 +117,10 @@ public class LongNode : Node
         
         tailTween.OnUpdate(() => {
             lineRenderer.SetPosition(1, tailVector);
+            
+            if(headExecute){
+                Interaction();
+            }
         });
         
         tailTween.OnComplete(() => {

@@ -107,7 +107,8 @@ public class NormalNode : Node
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("JudgeLine")){
-            FailedInteraction();
+            // FailedInteraction();
+            Interaction();
         }    
     }
 
