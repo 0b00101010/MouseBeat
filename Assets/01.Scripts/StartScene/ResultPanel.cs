@@ -124,7 +124,7 @@ public class ResultPanel : UIWidget
 
         Items[2].DOFade(0, Duration);
 
-        scoreText.DOFade(10, Duration);
+        scoreText.DOFade(0, Duration);
         accuracyText.DOFade(0, Duration);
 
         for(int i = 0; i < judges.Length; i++){
