@@ -75,6 +75,7 @@ public class StageWidget : UIWidget
         WidgetTween = Items[1].DOFade(1, Duration);
 
         Items[2].DOFade(1, Duration);
+        Items[3].DOFade(1, Duration);
 
         yield return WidgetTween.WaitForCompletion();
 
