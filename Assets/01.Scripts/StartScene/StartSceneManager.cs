@@ -24,6 +24,8 @@ public class StartSceneManager : MonoBehaviour
     private Image blackFadeImage;
 
     private bool isTitle = true;
+    private static bool doingTutorial;
+    public static bool DoingTutorial {get => doingTutorial; set {doingTutorial = value;}}
     private SongInformation currentSongInformation;
 
     private void Start(){
@@ -38,6 +40,10 @@ public class StartSceneManager : MonoBehaviour
     }
 
     public void Update(){
+        if(doingTutorial){
+            return;
+        }
+
         if(Input.GetMouseButtonDown(0)){
             if(isTitle){
                 titleWidget.CloseWidget(() => {

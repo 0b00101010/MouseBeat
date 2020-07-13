@@ -17,6 +17,7 @@ public class Tutorial : MonoBehaviour
 
     public void ShowTutorials(){
         if(!isPlaying){
+            StartSceneManager.DoingTutorial = true;
             TutorialCoroutine().Start(this);
         }
     }
@@ -27,10 +28,11 @@ public class Tutorial : MonoBehaviour
         for(int i = 0; i < tutorialSprites.Length; i++){
             tutorialImage.sprite = tutorialSprites[i];
             yield return new WaitUntil(() => Input.anyKey);
-            yield return YieldInstructionCache.WaitSeconds(0.2f);
+            yield return YieldInstructionCache.WaitSeconds(0.5f);
         }
 
         tutorialImage.gameObject.SetActive(false);
+        StartSceneManager.DoingTutorial = false;
         yield return YieldInstructionCache.WaitFrame;
     }
 }
